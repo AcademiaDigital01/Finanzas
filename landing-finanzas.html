@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hoja de Cálculo de Control Financiero Empresarial</title>
+
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1244334197874486');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1244334197874486&ev=PageView&noscript=1"/></noscript>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green-1: #0ADF99;
+  --green-2: #48F0E3;
+  --green-btn: #00926A;
+  --green-dark: #007C59;
+  --bg-main: #070c0e;
+  --bg-hero: #0d1f2d;
+  --bg-card: #111820;
+  --bg-card2: #0e1520;
+  --bg-light: #f2f6f9;
+  --bg-green-dark: #00422f;
+  --text-white: #ffffff;
+  --text-muted: #a0b4bf;
+  --grad: linear-gradient(90deg, #0ADF99, #48F0E3);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-main);
+  color: var(--text-white);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.grad-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+img { display: block; max-width: 100%; }
+
+/* ======= HERO ======= */
+.hero {
+  background: linear-gradient(180deg, #0d1f2d 0%, #070c0e 100%);
+  padding: 60px 0 90px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 70px;
+  background: var(--bg-main);
+  clip-path: polygon(0 100%, 100% 20%, 100% 100%);
+}
+
+.grad-line {
+  width: 280px;
+  height: 6px;
+  background: var(--grad);
+  border-radius: 3px;
+  margin: 0 auto 28px;
+}
+
+.badge-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10,223,153,0.08);
+  border: 1px solid var(--green-1);
+  border-radius: 50px;
+  padding: 8px 22px;
+  margin-bottom: 28px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--green-1);
+  letter-spacing: 0.5px;
+}
+
+.hero h1 {
+  font-size: clamp(24px, 3.5vw, 40px);
+  font-weight: 800;
+  line-height: 1.25;
+  max-width: 820px;
+  margin: 0 auto 20px;
+}
+
+.hero h1 em {
+  font-style: normal;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: clamp(15px, 1.8vw, 18px);
+  color: var(--text-muted);
+  max-width: 580px;
+  margin: 0 auto 44px;
+}
+
+.hero-img {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 14px;
+  box-shadow: 0 24px 70px rgba(10,223,153,0.12);
+}
+
+/* ======= SECTION HEADERS ======= */
+.section-title {
+  font-size: clamp(22px, 2.8vw, 34px);
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+.center { text-align: center; }
+
+/* ======= PARA QUIÉN ======= */
+.for-who {
+  background: var(--bg-light);
+  color: #111;
+  padding: 70px 0;
+}
+
+.for-who .section-title { text-align: center; }
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.benefit-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+  transition: transform 0.2s;
+}
+
+.benefit-card:hover { transform: translateY(-3px); }
+
+.benefit-icon { flex-shrink: 0; width: 38px; height: 38px; }
+
+.benefit-card p { font-size: 15px; color: #333; line-height: 1.55; }
+
+/* ======= QUÉ INCLUYE ======= */
+.features {
+  background: var(--bg-main);
+  padding: 70px 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+@media (max-width: 700px) { .features-grid { grid-template-columns: 1fr; } }
+
+.feat-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(10,223,153,0.1);
+  transition: border-color 0.2s;
+}
+
+.feat-card:hover { border-color: rgba(10,223,153,0.3); }
+
+.feat-card-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.feat-card-body { padding: 18px 22px 26px; }
+
+.feat-badge {
+  display: inline-block;
+  background: var(--green-btn);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  letter-spacing: 0.3px;
+}
+
+.feat-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 8px; }
+
+.feat-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+/* ======= SITUACIONES ======= */
+.situations {
+  background: var(--bg-light);
+  color: #111;
+  padding: 70px 0;
+}
+
+.situations .section-title { text-align: center; }
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.pain-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 24px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.06);
+  border-left: 4px solid var(--green-btn);
+}
+
+.pain-card p { font-size: 15px; color: #333; line-height: 1.55; font-style: italic; }
+
+/* ======= SOCIAL PROOF BANNER ======= */
+.social-proof-section {
+  background: linear-gradient(135deg, var(--bg-green-dark) 0%, #00613d 100%);
+  padding: 70px 0;
+  text-align: center;
+}
+
+.social-proof-section .section-title { color: #fff; }
+
+.sp-sub { color: rgba(255,255,255,0.8); margin-bottom: 36px; font-size: 16px; }
+
+.carousel-track {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+}
+
+.carousel-track::-webkit-scrollbar { display: none; }
+
+.carousel-track img {
+  height: 360px;
+  width: auto;
+  border-radius: 12px;
+  flex-shrink: 0;
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+/* ======= 3 PASOS ======= */
+.steps {
+  background: var(--bg-main);
+  padding: 70px 0;
+}
+
+.steps .section-title { text-align: center; }
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+@media (max-width: 800px) { .steps-grid { grid-template-columns: 1fr; } }
+
+.step-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(10,223,153,0.1);
+}
+
+.step-card img { width: 100%; height: 185px; object-fit: cover; }
+
+.step-card-body { padding: 18px 22px 24px; }
+
+.step-num {
+  font-size: 28px;
+  font-weight: 900;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 6px;
+}
+
+.step-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.step-card p { font-size: 14px; color: var(--text-muted); }
+
+/* ======= MEDIOS ======= */
+.media {
+  background: var(--bg-light);
+  color: #111;
+  padding: 70px 0;
+  text-align: center;
+}
+
+.media .section-title { color: #111; }
+
+.media-logos { max-width: 820px; margin: 0 auto 36px; }
+
+.media-screenshots {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.media-screenshots img {
+  width: calc(33% - 12px);
+  min-width: 220px;
+  border-radius: 10px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+}
+
+/* ======= MÁS TESTIMONIOS ======= */
+.more-proof {
+  background: var(--bg-card2);
+  padding: 70px 0;
+  text-align: center;
+}
+
+.more-proof .section-title { max-width: 720px; margin-left: auto; margin-right: auto; }
+
+.proof-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+@media (max-width: 640px) { .proof-cols { grid-template-columns: 1fr; } }
+
+.proof-col { display: flex; flex-direction: column; gap: 16px; }
+
+.proof-col img {
+  border-radius: 12px;
+  border: 1px solid rgba(10,223,153,0.08);
+  width: 100%;
+}
+
+/* ======= BONOS ======= */
+.bonuses {
+  background: linear-gradient(135deg, var(--bg-green-dark) 0%, #005a38 100%);
+  padding: 70px 0;
+}
+
+.bonuses .section-title { text-align: center; color: #fff; }
+
+.bonuses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+@media (max-width: 800px) { .bonuses-grid { grid-template-columns: 1fr; } }
+
+.bonus-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 28px 22px;
+}
+
+.bonus-icon { width: 52px; height: 52px; margin-bottom: 16px; }
+
+.bonus-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.bonus-card h3 em {
+  font-style: normal;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bonus-card p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+
+/* ======= VIDEO TESTIMONIALS ======= */
+.videos-section {
+  background: var(--bg-main);
+  padding: 70px 0;
+}
+
+.videos-section .section-title { text-align: center; }
+.videos-section .section-sub { text-align: center; color: var(--text-muted); margin-bottom: 36px; font-size: 16px; }
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 700px) { .videos-grid { grid-template-columns: 1fr; } }
+
+.video-wrap {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(10,223,153,0.1);
+}
+
+.video-embed {
+  position: relative;
+  padding-top: 56.25%;
+  background: #000;
+}
+
+.video-embed iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+.video-quote {
+  background: var(--bg-card);
+  padding: 20px 22px;
+}
+
+.video-quote p {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.video-quote cite { font-size: 13px; font-weight: 700; color: var(--green-1); }
+
+/* ======= GARANTÍA ======= */
+.guarantee {
+  background: var(--bg-light);
+  color: #111;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.guarantee img { width: 160px; margin: 0 auto 22px; }
+.guarantee h3 { font-size: 26px; font-weight: 800; margin-bottom: 14px; }
+.guarantee p { max-width: 540px; margin: 0 auto; font-size: 15px; color: #444; line-height: 1.7; }
+
+/* ======= PRECIO / CTA ======= */
+.pricing {
+  background: var(--bg-card2);
+  padding: 80px 0;
+  text-align: center;
+}
+
+.pricing-logo { width: 110px; margin: 0 auto 24px; }
+
+.pricing .section-title { font-size: clamp(24px, 3vw, 36px); }
+
+.pricing-box {
+  background: var(--bg-main);
+  border: 1px solid rgba(10,223,153,0.18);
+  border-radius: 22px;
+  padding: 44px 40px;
+  max-width: 560px;
+  margin: 36px auto 0;
+}
+
+@media (max-width: 600px) { .pricing-box { padding: 32px 20px; } }
+
+.opportunity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(10,223,153,0.08);
+  border: 1px solid var(--green-1);
+  border-radius: 50px;
+  padding: 7px 18px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--green-1);
+  font-weight: 600;
+}
+
+.box-transform { font-size: 15px; color: var(--text-muted); margin-bottom: 22px; }
+
+.box-access {
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 800;
+  margin-bottom: 22px;
+  line-height: 1.3;
+}
+
+.includes-list {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.includes-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: rgba(255,255,255,0.85);
+}
+
+.includes-list li::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: var(--green-1);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.pricing-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 22px 0;
+}
+
+.no-monthly { font-weight: 700; font-size: 15px; margin-bottom: 22px; }
+
+.price-inner {
+  background: rgba(10,223,153,0.05);
+  border: 1px solid rgba(10,223,153,0.15);
+  border-radius: 14px;
+  padding: 24px 20px;
+  margin-bottom: 24px;
+}
+
+.price-from {
+  font-size: 14px;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  margin-bottom: 4px;
+}
+
+.price-main {
+  font-size: clamp(48px, 6vw, 64px);
+  font-weight: 900;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.price-install { font-size: 15px; color: var(--text-muted); margin-bottom: 10px; }
+.price-or { font-size: 14px; color: var(--text-muted); margin-bottom: 6px; }
+.price-cash { font-size: 20px; font-weight: 700; color: #fff; }
+
+.btn-cta {
+  display: block;
+  width: 100%;
+  background: var(--grad);
+  color: #000;
+  font-weight: 800;
+  font-size: 17px;
+  padding: 18px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: ctapulse 2s infinite;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(10,223,153,0.35);
+}
+
+@keyframes ctapulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(10,223,153,0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(10,223,153,0); }
+}
+
+/* ======= QUIÉNES SOMOS ======= */
+.who {
+  background: var(--bg-main);
+  padding: 70px 0;
+}
+
+.who h2 { font-size: clamp(24px, 3vw, 34px); font-weight: 800; margin-bottom: 36px; }
+
+.who-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  align-items: center;
+}
+
+@media (max-width: 768px) { .who-grid { grid-template-columns: 1fr; } }
+
+.who-grid img { border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+
+.who-text p { font-size: 15px; color: var(--text-muted); line-height: 1.85; }
+
+/* ======= FAQ ======= */
+.faq {
+  background: var(--bg-light);
+  color: #111;
+  padding: 70px 0;
+}
+
+.faq .section-title { color: #111; }
+
+.faq-item { border-bottom: 1px solid #dde3e8; }
+
+.faq-q {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111;
+  padding: 20px 24px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  transition: color 0.2s;
+}
+
+.faq-q:hover { color: var(--green-btn); }
+
+.faq-q.active { color: var(--green-btn); }
+
+.faq-toggle {
+  width: 28px;
+  height: 28px;
+  background: var(--green-btn);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+  line-height: 1;
+}
+
+.faq-q.active .faq-toggle { transform: rotate(45deg); }
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.2s;
+  padding: 0 24px;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.7;
+}
+
+.faq-a.open {
+  max-height: 400px;
+  padding: 0 24px 20px;
+}
+
+/* ======= POST COMPRA ======= */
+.post-buy {
+  background: var(--bg-main);
+  padding: 70px 0;
+}
+
+.post-buy .section-title { margin-bottom: 36px; }
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 800px) { .post-grid { grid-template-columns: 1fr; } }
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.post-icon { width: 80px; flex-shrink: 0; }
+
+.post-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+.post-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+/* ======= FOOTER ======= */
+footer {
+  background: #040a0c;
+  text-align: center;
+  padding: 56px 24px;
+  border-top: 1px solid rgba(10,223,153,0.08);
+}
+
+.footer-logo { width: 130px; margin: 0 auto 18px; }
+footer p { font-size: 13px; color: #607080; margin-bottom: 6px; }
+footer .contact { color: #7a90a0; font-size: 13px; margin-top: 10px; }
+footer .contact strong { color: var(--green-1); }
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 540px) {
+  .hero { padding: 40px 0 70px; }
+  .pricing-box { padding: 28px 16px; }
+  .feat-badge { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HERO -->
+<!-- ============================================================ -->
+<section class="hero">
+  <div class="container">
+    <div class="grad-line"></div>
+
+    <div class="badge-top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 31 30" fill="currentColor">
+        <path d="M13.4456 0.10461C5.47302 1.1911 -0.218558 8.4295 0.573569 16.4754C1.44638 25.3436 9.83706 31.4955 18.5725 29.6822C24.9095 28.3681 29.7063 23.0751 30.4104 16.6369C31.0998 10.3235 27.7626 4.25237 22.093 1.49209C20.5601 0.743292 19.2106 0.332188 17.5236 0.10461C16.5115 -0.0348721 14.4651 -0.0348721 13.4456 0.10461ZM17.3183 5.05256C17.641 5.2728 17.993 5.772 18.1104 6.1831C18.2131 6.57218 17.6263 16.5562 17.465 17.1068C17.3183 17.5839 16.8415 18.0611 16.3354 18.23C15.1032 18.6411 13.8124 18.0758 13.519 17.004C13.453 16.7544 13.3136 14.8457 13.1156 11.5495C12.7709 5.85275 12.7635 6.0583 13.299 5.4343C13.7904 4.86169 13.893 4.83232 15.5726 4.85435C17.0029 4.86903 17.0469 4.87637 17.3183 5.05256ZM16.4968 20.6746C16.6875 20.77 16.9809 20.9829 17.1496 21.1518C18.3158 22.319 17.9564 24.213 16.4161 24.9545C16.1667 25.0793 15.9394 25.1233 15.5286 25.1233C15.0446 25.1307 14.9125 25.1013 14.4871 24.8884C13.9811 24.6388 13.6217 24.2864 13.365 23.7726C13.1596 23.3835 13.1303 22.4805 13.299 22.0033C13.4896 21.4748 13.9884 20.9389 14.5385 20.6746C14.9272 20.4837 15.0446 20.4617 15.5653 20.4837C15.9981 20.4984 16.2474 20.5498 16.4968 20.6746Z"/>
+      </svg>
+      ¡LA MEJOR OPORTUNIDAD DE 2026!
+    </div>
+
+    <h1>La herramienta que necesitas para tener total claridad sobre las finanzas de tu empresa y
+      <em>¡Por fin entiendes tu verdadero beneficio!</em>
+    </h1>
+
+    <p class="hero-sub">Se acabaron las dudas. Se acabaron las conjeturas. Sepa con exactitud cuánto gana o pierde su empresa cada mes.</p>
+
+    <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2025/05/mockup-1-2048x710.png"
+         alt="Hoja de Cálculo de Control Financiero" class="hero-img">
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PARA QUIÉN ES -->
+<!-- ============================================================ -->
+<section class="for-who">
+  <div class="container">
+    <h2 class="section-title">Esta hoja de cálculo fue creada para usted:</h2>
+
+    <div class="benefits-grid">
+
+      <div class="benefit-card">
+        <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" fill="none">
+          <path d="M11.18 0.0116745C9.87832 0.190409 8.95655 0.413826 8.0236 0.77688C6.30854 1.44155 4.94543 2.32405 3.63819 3.63663C1.73877 5.53009 0.615883 7.70842 0.113096 10.4509C-0.0377395 11.2552 -0.0377395 13.7239 0.113096 14.5282C0.504152 16.6563 1.25833 18.4045 2.50971 20.0802C3.02367 20.7672 4.2136 21.9569 4.90074 22.4707C6.57111 23.7219 8.32527 24.4759 10.4817 24.8725C11.2582 25.0177 13.7386 25.0121 14.5319 24.8669C15.4928 24.6937 17.0067 24.2581 17.3028 24.0738C17.3307 24.057 17.2414 23.9006 17.0961 23.7331C16.6492 23.1801 16.4592 22.6662 16.4592 22.0127C16.4592 21.0074 17.0347 20.069 17.9173 19.6501C18.124 19.5496 18.3307 19.4714 18.3754 19.4714C18.4536 19.4714 18.4648 19.2033 18.4816 17.2204C18.4983 15.0086 18.5039 14.9695 18.6324 14.64C18.9229 13.9027 19.3419 13.4447 20.0067 13.1263C20.8391 12.7297 21.7888 12.7856 22.5541 13.2771C22.8893 13.4893 23.286 13.9138 23.4424 14.221C23.7385 14.7963 23.7441 14.841 23.7776 16.3994L23.8055 17.8795L23.9899 17.4885C24.42 16.5837 24.8111 15.1203 24.9507 13.8915C25.0457 13.1095 24.9954 11.1267 24.8669 10.4229C24.4926 8.33957 23.7217 6.5634 22.4759 4.89894C21.962 4.21193 20.772 3.02223 20.0849 2.50837C18.4201 1.26281 16.6548 0.497608 14.5598 0.117798C14.1744 0.0451872 13.6604 0.01726 12.6883 0.00608908C11.9509 -0.0050818 11.275 0.000503639 11.18 0.0116745Z" fill="#00926A"/>
+        </svg>
+        <p>Saber cuánto beneficio estás obteniendo de una manera sencilla e intuitiva.</p>
+      </div>
+
+      <div class="benefit-card">
+        <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" fill="none">
+          <path d="M10.9117 0.0659438C8.70981 0.354146 6.72277 1.1699 4.89683 2.53764C4.25238 3.02124 2.99766 4.28639 2.50456 4.95072C1.17172 6.73367 0.336871 8.79016 0.0732327 10.9346C-0.0244109 11.7308 -0.0244109 13.2646 0.0732327 14.0608C0.551687 17.9247 2.83167 21.3538 6.24919 23.3566C7.49903 24.0844 8.92951 24.5973 10.4674 24.866C11.3169 25.0125 13.1184 25.0467 14.0167 24.9295C19.3969 24.2554 23.703 20.2645 24.7771 14.9645C25.0065 13.841 25.0651 12.1118 24.9235 10.9346C24.2205 5.278 19.7143 0.769352 14.0607 0.0659438C13.3186 -0.0219822 11.6147 -0.0219822 10.9117 0.0659438Z" fill="#00926A"/>
+        </svg>
+        <p>Identificar dónde se produce el mayor gasto de la operación.</p>
+      </div>
+
+      <div class="benefit-card">
+        <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" fill="none">
+          <path d="M0.660896 0.101065C-0.13714 0.468086 -0.232904 1.60638 0.485328 2.10638C0.698137 2.25532 0.724738 2.26064 1.49085 2.2766L2.28357 2.29255L2.29421 8.84575L2.31017 15.3989L2.48574 15.7606C2.69323 16.1809 3.08692 16.5957 3.45402 16.7819C4.0286 17.0745 4.04457 17.0745 7.82725 17.0745H11.328V17.7128V18.3564L11.0886 18.4574C10.2852 18.8032 9.55101 19.5957 9.25308 20.4415C9.08815 20.8989 9.04559 21.9096 9.16795 22.3936C9.32756 23.0372 9.59357 23.4894 10.099 23.9894C10.8066 24.6915 11.5408 25 12.4984 25C13.4561 25 14.1903 24.6915 14.8978 23.9894C15.3926 23.5 15.664 23.0372 15.8236 22.4202C15.93 22.0053 15.9247 21.1436 15.8182 20.7234C15.5735 19.7713 14.9032 18.9521 14.004 18.5106L13.6689 18.3457V17.7074V17.0745H17.1696C20.9523 17.0745 20.9682 17.0745 21.5428 16.7819C21.9099 16.5957 22.3036 16.1809 22.5111 15.7606L22.6867 15.3989L22.7026 8.84575L22.7133 2.28723H23.4315C24.2242 2.28723 24.3945 2.24468 24.6498 1.98936C25.2297 1.40958 25.0648 0.44149 24.3359 0.101065C24.1285 0.00531994 23.7028 7.91624e-07 12.4984 7.91624e-07C1.294 7.91624e-07 0.868385 0.00531994 0.660896 0.101065Z" fill="#00926A"/>
+        </svg>
+        <p>Ahorrar tiempo y anticipar posibles problemas de flujo de caja.</p>
+      </div>
+
+      <div class="benefit-card">
+        <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" fill="none">
+          <path d="M12.7194 0.0560951C12.1047 0.173329 11.4508 0.463624 10.8976 0.859987C10.484 1.15586 1.00034 10.6407 0.771213 10.9924C0.514142 11.3776 0.273836 11.8744 0.128535 12.3322C0.0167655 12.7006 0 12.8625 0 13.6441C0 14.4257 0.0167655 14.5876 0.128535 14.956C0.301779 15.4919 0.564438 16.0167 0.882983 16.4354C1.21829 16.8764 8.36598 23.9886 8.69012 24.2064C9.50045 24.7479 10.1487 24.9544 11.1826 24.9879C11.8588 25.0158 12.032 24.9991 12.44 24.8986C12.9486 24.7702 13.5633 24.4966 13.9824 24.2175C14.3457 23.9775 23.8405 14.5094 24.1423 14.0907C24.7235 13.2812 24.9526 12.5946 24.9918 11.5785C25.0197 10.8696 25.0029 10.7691 24.5056 7.69865C24.2261 5.96247 23.9579 4.40493 23.9076 4.23745C23.4773 2.74132 22.259 1.52431 20.7613 1.09446C20.5936 1.04421 19.04 0.776248 17.3132 0.497119C14.6586 0.0728429 14.083 -0.0053133 13.5689 0.000269284C13.2392 0.00585187 12.8535 0.0281822 12.7194 0.0560951Z" fill="#00926A"/>
+        </svg>
+        <p>Tener todas tus finanzas en un solo lugar, incluso si no sabes usar Excel.</p>
+      </div>
+
+      <div class="benefit-card">
+        <svg class="benefit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 25" fill="none">
+          <path d="M4.35565 0.123025C4.28741 0.183681 4.23434 0.304993 4.23434 0.388394C4.23434 0.471796 4.48454 1.04044 4.78782 1.65458C5.34889 2.76913 5.66733 3.54249 5.82655 4.15663L5.90995 4.48266L5.46262 5.02856C3.69602 7.17426 3.21835 8.63758 3.21835 11.8296C3.21835 13.8919 3.48372 15.2642 4.12819 16.5607C4.43905 17.1673 5.34131 18.5245 6.34213 19.8589C6.73639 20.3821 7.07 20.8521 7.08516 20.89C7.10791 20.9355 6.93352 21.254 6.69848 21.6028C6.19807 22.3685 5.97819 22.9296 5.97819 23.4376C5.97819 23.9456 6.12225 24.2564 6.51651 24.59C7.38844 25.3407 8.29069 25.0753 9.79951 23.6423L10.4819 23.0054L11.6192 23.2935C13.2493 23.7105 14.5686 23.8849 16.0091 23.8849C17.5331 23.8849 18.5643 23.7333 20.1716 23.2784L21.4378 22.922L22.105 23.5968C23.5305 25.0374 24.4782 25.3407 25.335 24.6355C25.9112 24.1579 26.0704 23.4528 25.7671 22.6491C25.6837 22.4216 25.3956 21.9136 25.1378 21.5118L24.6602 20.7915L24.8649 20.6702C25.5624 20.2607 26.8969 18.7368 27.4882 17.6905C27.7764 17.1673 28.345 15.6282 28.345 15.3552C28.345 15.2111 28.3981 15.2036 29.2018 15.2036C29.9751 15.2036 30.0889 15.1884 30.4831 14.9913C31.0063 14.7335 31.4764 14.2255 31.6356 13.7478C31.7038 13.5507 31.7569 13.1489 31.7569 12.8456C31.7569 11.3898 30.8319 10.4497 29.27 10.3359C28.7544 10.2904 28.7165 10.2753 28.6786 10.0933C28.3071 8.42528 27.7612 7.13635 26.8741 5.80192C24.7132 2.57958 21.1118 0.577944 16.8052 0.214009C14.3335 0.00929577 11.9528 0.464214 9.79192 1.55602C8.98823 1.96544 8.80627 2.03368 8.7077 1.95028C8.63188 1.90479 8.30586 1.65458 7.97983 1.40438C6.62266 0.37323 4.75749 -0.286401 4.35565 0.123025Z" fill="#00926A"/>
+        </svg>
+        <p>Tener mayor claridad sobre todo lo que está sucediendo, agilizando la toma de decisiones.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- QUÉ INCLUYE -->
+<!-- ============================================================ -->
+<section class="features">
+  <div class="container">
+    <h2 class="section-title">Qué incluye la herramienta:</h2>
+
+    <div class="features-grid">
+
+      <div class="feat-card">
+        <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2025/05/graficos.png"
+             alt="Gráficos automatizados" class="feat-card-img">
+        <div class="feat-card-body">
+          <span class="feat-badge">CRESCE MAIS</span>
+          <h3>Gráficos automatizados</h3>
+          <p>Obtén una visión general completa de tu vida financiera con la ayuda de gráficos automatizados, todo en un mismo lugar — un resumen detallado para tomar decisiones financieras inteligentes.</p>
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2025/05/lancamentos.png"
+             alt="Fácil de usar" class="feat-card-img">
+        <div class="feat-card-body">
+          <span class="feat-badge">LANÇAMENTOS</span>
+          <h3>Fácil de usar</h3>
+          <p>No se requiere experiencia con Excel; utilice la hoja de cálculo como una aplicación y ajústela a sus necesidades.</p>
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2025/05/home.png"
+             alt="Navegación intuitiva" class="feat-card-img">
+        <div class="feat-card-body">
+          <span class="feat-badge">ACESSO FÁCIL</span>
+          <h3>Navegación intuitiva</h3>
+          <p>Registrarás las principales facturas pagadas y recibidas del mes para tenerlo todo centralizado. Controla y analiza todas tus finanzas de forma completa e intuitiva.</p>
+        </div>
+      </div>
+
+      <div class="feat-card">
+        <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2025/05/fluxo-de-caixa-1.png"
+             alt="Control de ingresos y gastos" class="feat-card-img">
+        <div class="feat-card-body">
+          <span class="feat-badge">CRESCE MAIS</span>
+          <h3>Controla tus ingresos y gastos</h3>
+          <p>Registra y clasifica sistemáticamente tus ingresos y gastos. Esto te ayudará a tener una visión clara de cómo gastas tu dinero e identificar áreas donde puedes ahorrar.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SITUACIONES DOLOROSAS -->
+<!-- ============================================================ -->
+<section class="situations">
+  <div class="container">
+    <h2 class="section-title">¿Alguna vez has vivido alguna de estas situaciones?</h2>
+
+    <div class="pain-grid">
+
+      <div class="pain-card">
+        <svg style="flex-shrink:0;width:32px;height:32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" fill="none">
+          <path d="M11.18 0.0116745C9.87832 0.190409 8.95655 0.413826 8.0236 0.77688C6.30854 1.44155 4.94543 2.32405 3.63819 3.63663C1.73877 5.53009 0.615883 7.70842 0.113096 10.4509C-0.0377395 11.2552 -0.0377395 13.7239 0.113096 14.5282C0.504152 16.6563 1.25833 18.4045 2.50971 20.0802C3.02367 20.7672 4.2136 21.9569 4.90074 22.4707C6.57111 23.7219 8.32527 24.4759 10.4817 24.8725C11.2582 25.0177 13.7386 25.0121 14.5319 24.8669C15.4928 24.6937 17.0067 24.2581 17.3028 24.0738C17.3307 24.057 17.2414 23.9006 17.0961 23.7331C16.6492 23.1801 16.4592 22.6662 16.4592 22.0127C16.4592 21.0074 17.0347 20.069 17.9173 19.6501C18.124 19.5496 18.3307 19.4714 18.3754 19.4714C18.4536 19.4714 18.4648 19.2033 18.4816 17.2204C18.4983 15.0086 18.5039 14.9695 18.6324 14.64C18.9229 13.9027 19.3419 13.4447 20.0067 13.1263C20.8391 12.7297 21.7888 12.7856 22.5541 13.2771C22.8893 13.4893 23.286 13.9138 23.4424 14.221C23.7385 14.7963 23.7441 14.841 23.7776 16.3994L23.8055 17.8795L23.9899 17.4885C24.42 16.5837 24.8111 15.1203 24.9507 13.8915C25.0457 13.1095 24.9954 11.1267 24.8669 10.4229C24.4926 8.33957 23.7217 6.5634 22.4759 4.89894C21.962 4.21193 20.772 3.02223 20.0849 2.50837C18.4201 1.26281 16.6548 0.497608 14.5598 0.117798C14.1744 0.0451872 13.6604 0.01726 12.6883 0.00608908C11.9509 -0.0050818 11.275 0.000503639 11.18 0.0116745Z" fill="#00926A"/>
+        </svg>
+        <p>¿Tiene problemas para identificar las entradas y salidas de efectivo?</p>
+      </div>
+
+      <div class="pain-card">
+        <svg style="flex-shrink:0;width:32px;height:32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" fill="none">
+          <path d="M0.660896 0.101065C-0.13714 0.468086 -0.232904 1.60638 0.485328 2.10638C0.698137 2.25532 0.724738 2.26064 1.49085 2.2766L2.28357 2.29255L2.29421 8.84575L2.31017 15.3989L2.48574 15.7606C2.69323 16.1809 3.08692 16.5957 3.45402 16.7819C4.0286 17.0745 4.04457 17.0745 7.82725 17.0745H11.328V18.3564L11.0886 18.4574C10.2852 18.8032 9.55101 19.5957 9.25308 20.4415C9.08815 20.8989 9.04559 21.9096 9.16795 22.3936C9.32756 23.0372 9.59357 23.4894 10.099 23.9894C10.8066 24.6915 11.5408 25 12.4984 25C13.4561 25 14.1903 24.6915 14.8978 23.9894C15.3926 23.5 15.664 23.0372 15.8236 22.4202C15.93 22.0053 15.9247 21.1436 15.8182 20.7234C15.5735 19.7713 14.9032 18.9521 14.004 18.5106L13.6689 18.3457V17.0745H17.1696C20.9523 17.0745 20.9682 17.0745 21.5428 16.7819C21.9099 16.5957 22.3036 16.1809 22.5111 15.7606L22.6867 15.3989L22.7026 8.84575L22.7133 2.28723H23.4315C24.2242 2.28723 24.3945 2.24468 24.6498 1.98936C25.2297 1.40958 25.0648 0.44149 24.3359 0.101065C24.1285 0.00531994 23.7028 7.91624e-07 12.4984 7.91624e-07C1.294 7.91624e-07 0.868385 0.00531994 0.660896 0.101065Z" fill="#00926A"/>
+        </svg>
+        <p>¿Pierdes tiempo revisando varias cuentas para averiguar cuánto vendiste?</p>
+      </div>
+
+      <div class="pain-card">
+        <svg style="flex-shrink:0;width:32px;height:32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" fill="none">
+          <path d="M12.7194 0.0560951C12.1047 0.173329 11.4508 0.463624 10.8976 0.859987C10.484 1.15586 1.00034 10.6407 0.771213 10.9924C0.514142 11.3776 0.273836 11.8744 0.128535 12.3322C0.0167655 12.7006 0 12.8625 0 13.6441C0 14.4257 0.0167655 14.5876 0.128535 14.956C0.301779 15.4919 0.564438 16.0167 0.882983 16.4354C1.21829 16.8764 8.36598 23.9886 8.69012 24.2064C9.50045 24.7479 10.1487 24.9544 11.1826 24.9879C11.8588 25.0158 12.032 24.9991 12.44 24.8986C12.9486 24.7702 13.5633 24.4966 13.9824 24.2175C14.3457 23.9775 23.8405 14.5094 24.1423 14.0907C24.7235 13.2812 24.9526 12.5946 24.9918 11.5785C25.0197 10.8696 25.0029 10.7691 24.5056 7.69865C24.2261 5.96247 23.9579 4.40493 23.9076 4.23745C23.4773 2.74132 22.259 1.52431 20.7613 1.09446C20.5936 1.04421 19.04 0.776248 17.3132 0.497119C14.6586 0.0728429 14.083 -0.0053133 13.5689 0.000269284C13.2392 0.00585187 12.8535 0.0281822 12.7194 0.0560951Z" fill="#00926A"/>
+        </svg>
+        <p>¿Estás perdido y no estás seguro del costo, los impuestos o las ganancias?</p>
+      </div>
+
+      <div class="pain-card">
+        <svg style="flex-shrink:0;width:32px;height:32px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 25" fill="none">
+          <path d="M4.35565 0.123025C4.28741 0.183681 4.23434 0.304993 4.23434 0.388394C4.23434 0.471796 4.48454 1.04044 4.78782 1.65458C5.34889 2.76913 5.66733 3.54249 5.82655 4.15663L5.90995 4.48266L5.46262 5.02856C3.69602 7.17426 3.21835 8.63758 3.21835 11.8296C3.21835 13.8919 3.48372 15.2642 4.12819 16.5607C4.43905 17.1673 5.34131 18.5245 6.34213 19.8589C6.73639 20.3821 7.07 20.8521 7.08516 20.89C7.10791 20.9355 6.93352 21.254 6.69848 21.6028C6.19807 22.3685 5.97819 22.9296 5.97819 23.4376C5.97819 23.9456 6.12225 24.2564 6.51651 24.59C7.38844 25.3407 8.29069 25.0753 9.79951 23.6423L10.4819 23.0054L11.6192 23.2935C13.2493 23.7105 14.5686 23.8849 16.0091 23.8849C17.5331 23.8849 18.5643 23.7333 20.1716 23.2784L21.4378 22.922L22.105 23.5968C23.5305 25.0374 24.4782 25.3407 25.335 24.6355C25.9112 24.1579 26.0704 23.4528 25.7671 22.6491C25.6837 22.4216 25.3956 21.9136 25.1378 21.5118L24.6602 20.7915L24.8649 20.6702C25.5624 20.2607 26.8969 18.7368 27.4882 17.6905C27.7764 17.1673 28.345 15.6282 28.345 15.3552C28.345 15.2111 28.3981 15.2036 29.2018 15.2036C29.9751 15.2036 30.0889 15.1884 30.4831 14.9913C31.0063 14.7335 31.4764 14.2255 31.6356 13.7478C31.7038 13.5507 31.7569 13.1489 31.7569 12.8456C31.7569 11.3898 30.8319 10.4497 29.27 10.3359C28.7544 10.2904 28.7165 10.2753 28.6786 10.0933C28.3071 8.42528 27.7612 7.13635 26.8741 5.80192C24.7132 2.57958 21.1118 0.577944 16.8052 0.214009C14.3335 0.00929577 11.9528 0.464214 9.79192 1.55602C8.98823 1.96544 8.80627 2.03368 8.7077 1.95028C8.63188 1.90479 8.30586 1.65458 7.97983 1.40438C6.62266 0.37323 4.75749 -0.286401 4.35565 0.123025Z" fill="#00926A"/>
+        </svg>
+        <p>¿Pasar horas gestionando las finanzas de la empresa sin resultados claros?</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SOCIAL PROOF — CARRUSEL -->
+<!-- ============================================================ -->
+<section class="social-proof-section">
+  <div class="container">
+    <h2 class="section-title">Vea los resultados de los emprendedores que utilizan la hoja de cálculo:</h2>
+    <p class="sp-sub">Más de 30.000 empresarios ya utilizan nuestra herramienta, y para 2026...</p>
+  </div>
+
+  <div class="carousel-track" id="carousel">
+    <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/07/image_2.webp" alt="Testimonio 1">
+    <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/07/image_3.webp" alt="Testimonio 2">
+    <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/07/image_4.webp" alt="Testimonio 3">
+    <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/07/image_5.webp" alt="Testimonio 4">
+    <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/07/image_6.webp" alt="Testimonio 5">
+    <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/07/image_7.webp" alt="Testimonio 6">
+    <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/07/image_8.webp" alt="Testimonio 7">
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 3 PASOS -->
+<!-- ============================================================ -->
+<section class="steps">
+  <div class="container">
+    <h2 class="section-title center">¡Organiza tus finanzas en 3 sencillos pasos!</h2>
+
+    <div class="steps-grid">
+
+      <div class="step-card">
+        <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/07/lancamento-de-receitas.webp"
+             alt="Paso 1: Registra tus cuentas">
+        <div class="step-card-body">
+          <div class="step-num">1.</div>
+          <h3>Registra tus cuentas</h3>
+          <p>Deberás registrar las principales facturas que se pagarán y se recibirán durante el mes para tener todo centralizado.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/07/candles_desktop.webp"
+             alt="Paso 2: Registra entradas y salidas">
+        <div class="step-card-body">
+          <div class="step-num">2.</div>
+          <h3>Registra todas las entradas y salidas</h3>
+          <p>Sepa exactamente cuánto dinero entra y sale cada día, los métodos de pago, los importes y las fechas.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/07/dashboard.webp"
+             alt="Paso 3: Tu empresa en la palma de tu mano">
+        <div class="step-card-body">
+          <div class="step-num">3.</div>
+          <h3>Tu empresa en la palma de tu mano</h3>
+          <p>Obtén informes personalizados con gráficos intuitivos y fáciles de leer con un solo clic.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- MEDIOS -->
+<!-- ============================================================ -->
+<section class="media">
+  <div class="container">
+    <h2 class="section-title">¡Salimos en los principales medios de comunicación!</h2>
+
+    <div class="media-logos">
+      <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/09/emissoras-de-tv.webp"
+           alt="Medios de comunicación" class="media-logos">
+    </div>
+
+    <div class="media-screenshots">
+      <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/09/band.webp" alt="Band TV">
+      <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/09/cetv.webp" alt="CE TV">
+      <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/09/jangadeiro.webp" alt="TV Jangadeiro">
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- MÁS TESTIMONIOS -->
+<!-- ============================================================ -->
+<section class="more-proof">
+  <div class="container">
+    <h2 class="section-title center">Más de 30.000 emprendedores están utilizando la herramienta a la que puedes acceder ahora:</h2>
+
+    <div class="proof-cols">
+      <div class="proof-col">
+        <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/09/28.webp" alt="Testimonio">
+        <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/09/34.webp" alt="Testimonio">
+      </div>
+      <div class="proof-col">
+        <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/09/19.webp" alt="Testimonio">
+        <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/09/12.webp" alt="Testimonio">
+        <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/09/35.webp" alt="Testimonio">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- BONOS -->
+<!-- ============================================================ -->
+<section class="bonuses">
+  <div class="container">
+    <h2 class="section-title">Al comprar la hoja de cálculo ahora, recibirá:</h2>
+
+    <div class="bonuses-grid">
+
+      <div class="bonus-card">
+        <svg class="bonus-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" fill="none">
+          <path d="M18.7625 0.11182C11.2411 1.09646 4.85279 6.05247 2.11026 13.0352C1.08387 15.6691 0.681525 18.0405 0.763636 21.0682C0.845748 24.3339 1.52727 26.9843 2.99707 29.8397L3.51437 30.849L1.75718 36.0265C0.78827 38.8738 0 41.319 0 41.4667C0 41.7867 0.21349 42 0.541936 42C0.673314 42 3.21877 41.2287 6.18299 40.2851L11.5859 38.5702L12.4235 38.964C14.5666 39.9651 16.8246 40.6051 19.132 40.8595C20.9056 41.0482 23.4182 40.9579 25.1672 40.6379C33.0663 39.1856 39.4463 33.2695 41.4252 25.5483C41.9261 23.5955 42 22.9226 42 20.42C42 18.4343 41.9754 18.0405 41.8111 17.1133C41.0475 12.8629 39.2328 9.29358 36.2933 6.27402C32.8938 2.77855 28.7308 0.710808 23.8944 0.103614C22.7367 -0.0358763 19.9038 -0.0358763 18.7625 0.11182Z" fill="url(#g1)"/>
+          <defs><linearGradient id="g1" x1="23" y1="0" x2="42" y2="42" gradientUnits="userSpaceOnUse"><stop stop-color="#0ADF99"/><stop offset="1" stop-color="#48F0E3"/></linearGradient></defs>
+        </svg>
+        <h3><em>Soporte vía WhatsApp</em> de lunes a viernes de 10:00 a 17:00.</h3>
+        <p>Contarás con asistencia personalizada al 100% para responder a todas tus preguntas y ayudarte a organizar tus finanzas.</p>
+      </div>
+
+      <div class="bonus-card">
+        <svg class="bonus-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 42" fill="none">
+          <path d="M3.10898 0.188672C1.67344 0.680859 0.598828 1.76367 0.164062 3.19102C0 3.69961 0 4.01133 0 15.8813V28.0547H42L41.9918 3.65039L41.8113 3.10898C41.3109 1.63242 40.2035 0.574219 38.727 0.13125C38.3168 0.0164063 36.6598 0 20.9672 0L3.65039 0.00820313L3.10898 0.188672Z" fill="url(#g2)"/>
+          <path d="M0 34.4285C0.00820313 38.2676 0.00820312 38.3578 0.188672 38.891C0.680859 40.3266 1.76367 41.4012 3.19102 41.8359C3.69961 42 4.04414 42 21 42C37.9559 42 38.3004 42 38.809 41.8359C40.2363 41.4012 41.3191 40.3266 41.8113 38.891C41.9918 38.3578 41.9918 38.2676 42 34.4285V30.5156H0V34.4285Z" fill="url(#g3)"/>
+          <defs>
+            <linearGradient id="g2" x1="0" y1="21" x2="42" y2="21" gradientUnits="userSpaceOnUse"><stop stop-color="#0ADF99"/><stop offset="1" stop-color="#48F0E3"/></linearGradient>
+            <linearGradient id="g3" x1="0" y1="36" x2="42" y2="36" gradientUnits="userSpaceOnUse"><stop stop-color="#0ADF99"/><stop offset="1" stop-color="#48F0E3"/></linearGradient>
+          </defs>
+        </svg>
+        <h3>Más de <em>20 lecciones sobre finanzas</em> empresariales básicas</h3>
+        <p>Recibirás 20 clases sobre los fundamentos de las finanzas empresariales, una clase práctica de cómo recortar costos y 2 e-books de bono para ayudarte en el camino.</p>
+      </div>
+
+      <div class="bonus-card">
+        <svg class="bonus-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 46" fill="none">
+          <path d="M0 20.1046H21.1816V13.7777H0V20.1046Z" fill="url(#g4)"/>
+          <path d="M23.8184 20.1046H45V13.7777H23.8184V20.1046Z" fill="url(#g4)"/>
+          <path d="M2.90039 45.5H42.0996V22.7408H23.8184V25.2452L28.2129 28.145V42.1608H16.7871V28.145L21.1816 25.2452V22.7408H2.90039V45.5Z" fill="url(#g4)"/>
+          <defs><linearGradient id="g4" x1="-1" y1="27" x2="49.5" y2="27" gradientUnits="userSpaceOnUse"><stop stop-color="#0ADF99"/><stop offset="1" stop-color="#48F0E3"/></linearGradient></defs>
+        </svg>
+        <h3><em>¡De regalo:</em> Hoja de cálculo de Finanzas Personales</h3>
+        <p>Recibe también una hoja de cálculo de finanzas personales para poder organizar tu vida fuera de la empresa. ¡La organización lo es todo!</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- VIDEO TESTIMONIALS -->
+<!-- ============================================================ -->
+<section class="videos-section">
+  <div class="container">
+    <h2 class="section-title">¿Aún con dudas si es para ti?</h2>
+    <p class="section-sub">Conoce un poco del impacto en la vida de nuestros alumnos</p>
+
+    <div class="videos-grid">
+
+      <div class="video-wrap">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/HSJ2WbZpaEU"
+                  title="Testimonio Paulo" allowfullscreen
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+          </iframe>
+        </div>
+        <div class="video-quote">
+          <p>"No tenía ningún control sobre lo que entraba y salía de mi empresa... La hoja de cálculo ha cambiado totalmente mi vida financiera."</p>
+          <cite>Paulo — Negocio de Açaí</cite>
+        </div>
+      </div>
+
+      <div class="video-wrap">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/fpKhqlV7WJE"
+                  title="Testimonio importadora" allowfullscreen
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+          </iframe>
+        </div>
+        <div class="video-quote">
+          <p>"Estaba totalmente ciego sin usar esta hoja de cálculo y me ha ayudado mucho. Es muy fácil, muy práctica y me ahorra tiempo."</p>
+          <cite>Comercial Importadora Exportadora</cite>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- GARANTÍA -->
+<!-- ============================================================ -->
+<section class="guarantee">
+  <div class="container">
+    <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/06/selo.webp" alt="Garantía 7 días">
+    <h3>Garantía de 7 Días</h3>
+    <p>Si realizas la inversión y no te gusta la Hoja de Cálculo de Control Financiero, por cualquier motivo y quieres tu dinero de vuelta, solo envía un mensaje y te devolveremos todo tu dinero de inmediato, sin ninguna burocracia.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PRECIO / CTA -->
+<!-- ============================================================ -->
+<section class="pricing">
+  <div class="container">
+    <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/06/logo_na_bandeira.webp"
+         alt="Logo" class="pricing-logo">
+    <h2 class="section-title center">¡Oferta Exclusiva!</h2>
+
+    <div class="pricing-box">
+      <div class="opportunity-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 90 77" fill="none">
+          <path d="M76.0134 0.150093C74.4137 0.429523 72.7084 1.23289 71.5482 2.28075C71.0384 2.73482 61.6158 13.0388 50.5935 25.1591C39.5888 37.2794 30.5179 47.2341 30.43 47.304C30.3421 47.3564 27.3711 44.9113 23.8201 41.89C16.9993 36.0744 16.1203 35.4631 13.9229 35.009C10.7059 34.3454 7.18998 35.3758 4.8695 37.6811C1.16024 41.3835 0 43.5491 0 46.8674C0 49.1901 0.668018 51.216 2.00405 52.8926C2.63691 53.6785 25.0331 74.1293 26.4219 75.1597C27.6173 76.0678 29.1115 76.6441 30.8694 76.9061C33.6118 77.3078 36.6003 76.3996 38.622 74.5833C39.8349 73.4656 87.8092 18.121 88.5651 16.9508C89.5671 15.3616 89.866 14.3312 89.9714 12.1132C90.0417 10.2794 90.0066 9.98255 89.5847 8.74258C89.321 7.99161 88.8463 6.96121 88.5299 6.4722C87.6334 5.09252 84.4515 2.19343 82.7815 1.23289C80.9356 0.167557 78.3339 -0.251588 76.0134 0.150093Z" fill="currentColor"/>
+        </svg>
+        Oportunidad Única 🎁
+      </div>
+
+      <p class="box-transform">¡Transforma la gestión financiera de tu empresa completamente!</p>
+
+      <h2 class="box-access">TODO con ACCESO VITALICIO<br>por apenas...</h2>
+
+      <ul class="includes-list">
+        <li>Hoja de Cálculo de Control Financiero Empresarial</li>
+        <li>Hoja de Cálculo de Finanzas Personales</li>
+        <li>Clases tutoriales de las hojas de cálculo</li>
+        <li>Acceso a la Comunidad VIP</li>
+        <li>Acceso al Entrenamiento ABC de las Finanzas — más de 20 clases</li>
+        <li>Clase bono para recortar costos en la práctica</li>
+        <li>Acceso a los 2 Bonos Exclusivos</li>
+        <li>Soporte por WhatsApp</li>
+      </ul>
+
+      <div class="pricing-divider"></div>
+
+      <p class="no-monthly">Sin mensualidades,<br>¡el pago es ÚNICO!</p>
+
+      <div class="price-inner">
+        <p class="price-from">de R$ 397,00 por apenas:</p>
+        <div class="price-main">R$ 16,24</div>
+        <p class="price-install">/mes en 12 cuotas</p>
+        <p class="price-or">o</p>
+        <p class="price-cash">R$ 157,00 al contado</p>
+      </div>
+
+      <a href="https://pay.kiwify.com.br/SSh6G3m" class="btn-cta"
+         onclick="fbq('track','InitiateCheckout')">
+        ¡Acceso Inmediato y Vitalicio!
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- QUIÉNES SOMOS -->
+<!-- ============================================================ -->
+<section class="who">
+  <div class="container">
+    <h2><span class="grad-text">¿Quiénes</span> somos nosotros?</h2>
+
+    <div class="who-grid">
+      <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/09/equipe_uniformizada.webp"
+           alt="Equipo LTQ Educação">
+      <div class="who-text">
+        <p>Nuestra misión es ayudar al pequeño emprendedor a gestionar su empresa a través de herramientas fáciles de usar y por medio de la Educación.</p>
+        <br>
+        <p>Creemos que es hablando de lo simple y de lo que realmente importa para ti, emprendedor, que la transformación sucede.</p>
+        <br>
+        <p>Además de nuestras herramientas y entrenamientos, creemos que el soporte a nuestros clientes es uno de los pilares de transformación y por eso, tendrás el apoyo de nuestro equipo de Especialistas para ayudarte, respondiendo todas tus dudas directamente por WhatsApp.</p>
+        <br>
+        <p>¡A partir de ahora, cuenta con nosotros para transformar tu gestión y hacer prosperar tu empresa!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FAQ -->
+<!-- ============================================================ -->
+<section class="faq">
+  <div class="container">
+    <h2 class="section-title">Preguntas Frecuentes:</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ¿Necesito saber de Excel?
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-a">
+        No, llenarás algunas informaciones y tendrás acceso automatizado a todos los informes y análisis. Además, contarás con todo el soporte necesario de nuestro equipo, que estará listo para ayudarte en el proceso.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ¿Es seguro almacenar mis informaciones financieras en la hoja de cálculo?
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-a">
+        Sí, es seguro almacenar tus informaciones financieras en la Hoja de Cálculo de Control Financiero. Como nuestra hoja de cálculo es en Excel, las informaciones se almacenan localmente en el dispositivo del usuario. Tienes total control y privacidad sobre tus datos, pues solo tú tendrás acceso a ellos.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ¿Qué versión de Excel es compatible con la hoja de cálculo?
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-a">
+        La Hoja de Cálculo de Control Financiero es compatible <strong>a partir de la versión Excel 2013</strong>. También puedes utilizarla en versiones más recientes como Excel 2016, 2019 y 2021. Asegúrate de tener una versión compatible instalada en tu computadora.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ¿La hoja de cálculo funciona en Google Sheets?
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-a">
+        No. Por contener lenguaje de programación VBA, que es de propiedad exclusiva de Microsoft, Google Sheets no funcionará correctamente.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ¿La hoja de cálculo funciona en Macbook?
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-a">
+        Sí, siempre que tengas Excel instalado (no puede ser LibreOffice Calc).
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ¿La hoja de cálculo funciona en celular?
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-a">
+        No. Por contener lenguaje de programación VBA, que es de propiedad exclusiva de Microsoft Excel Desktop, la herramienta solo funciona en computadoras.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        ¿Quiero compartirla con mi equipo, es posible?
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-a">
+        Sí. A través de los servicios en la nube (Google Drive, Dropbox y OneDrive) es posible dejar la hoja de cálculo compartida. Si no sabes hacer ese proceso, contáctanos por WhatsApp y te ayudaremos sin ningún costo adicional.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- POST COMPRA -->
+<!-- ============================================================ -->
+<section class="post-buy">
+  <div class="container">
+    <h2 class="section-title">Compré la hoja de cálculo, ¿y ahora?</h2>
+
+    <div class="post-grid">
+
+      <div class="post-card">
+        <svg class="post-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 110" fill="none">
+          <path d="M6.94249 24.0702L42.9425 2.96499C46.0656 1.13405 49.9344 1.13405 53.0575 2.96499L89.0575 24.0702C92.1191 25.865 94 29.1481 94 32.697V76.0332C94 79.5013 92.203 82.7218 89.2516 84.5432L53.2516 106.759C50.0324 108.746 45.9676 108.746 42.7484 106.759L6.74837 84.5432C3.79697 82.7218 2 79.5013 2 76.0332V32.697C2 29.1481 3.88093 25.865 6.94249 24.0702Z" fill="white" stroke="url(#pg1)" stroke-width="3"/>
+          <path d="M16.9463 30.187L42.9463 14.9598C46.0675 13.1318 49.9325 13.1318 53.0537 14.9598L79.0537 30.187C82.1174 31.9813 84 35.2656 84 38.816V70.2237C84 73.6935 82.2014 76.9153 79.2478 78.7361L53.2478 94.7648C50.0304 96.7483 45.9696 96.7483 42.7522 94.7648L16.7522 78.7361C13.7986 76.9153 12 73.6935 12 70.2237V38.816C12 35.2656 13.8826 31.9813 16.9463 30.187Z" fill="url(#pg2)"/>
+          <defs>
+            <linearGradient id="pg1" x1="81" y1="98" x2="53" y2="98" gradientUnits="userSpaceOnUse"><stop stop-color="#00926A"/><stop offset="1" stop-color="#007C59"/></linearGradient>
+            <linearGradient id="pg2" x1="74" y1="88" x2="52" y2="88" gradientUnits="userSpaceOnUse"><stop stop-color="#00926A"/><stop offset="1" stop-color="#007C59"/></linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <h3>Confirmación de compra por E-mail</h3>
+          <p>En el checkout de pago recibirás un aviso sobre el estado de tu compra. Una vez confirmado el pago, tu acceso a la plataforma será liberado.</p>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <svg class="post-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 110" fill="none">
+          <path d="M6.94249 24.0702L42.9425 2.96499C46.0656 1.13405 49.9344 1.13405 53.0575 2.96499L89.0575 24.0702C92.1191 25.865 94 29.1481 94 32.697V76.0332C94 79.5013 92.203 82.7218 89.2516 84.5432L53.2516 106.759C50.0324 108.746 45.9676 108.746 42.7484 106.759L6.74837 84.5432C3.79697 82.7218 2 79.5013 2 76.0332V32.697C2 29.1481 3.88093 25.865 6.94249 24.0702Z" fill="white" stroke="url(#pg3)" stroke-width="3"/>
+          <path d="M16.9463 30.187L42.9463 14.9598C46.0675 13.1318 49.9325 13.1318 53.0537 14.9598L79.0537 30.187C82.1174 31.9813 84 35.2656 84 38.816V70.2237C84 73.6935 82.2014 76.9153 79.2478 78.7361L53.2478 94.7648C50.0304 96.7483 45.9696 96.7483 42.7522 94.7648L16.7522 78.7361C13.7986 76.9153 12 73.6935 12 70.2237V38.816C12 35.2656 13.8826 31.9813 16.9463 30.187Z" fill="url(#pg4)"/>
+          <defs>
+            <linearGradient id="pg3" x1="81" y1="98" x2="53" y2="98" gradientUnits="userSpaceOnUse"><stop stop-color="#00926A"/><stop offset="1" stop-color="#007C59"/></linearGradient>
+            <linearGradient id="pg4" x1="74" y1="88" x2="52" y2="88" gradientUnits="userSpaceOnUse"><stop stop-color="#00926A"/><stop offset="1" stop-color="#007C59"/></linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <h3>Instrucciones de acceso</h3>
+          <p>Al e-mail que registraste en el checkout al momento de la compra, llegarán todas tus informaciones e instrucciones de acceso.</p>
+        </div>
+      </div>
+
+      <div class="post-card">
+        <svg class="post-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 110" fill="none">
+          <path d="M6.94249 24.0702L42.9425 2.96499C46.0656 1.13405 49.9344 1.13405 53.0575 2.96499L89.0575 24.0702C92.1191 25.865 94 29.1481 94 32.697V76.0332C94 79.5013 92.203 82.7218 89.2516 84.5432L53.2516 106.759C50.0324 108.746 45.9676 108.746 42.7484 106.759L6.74837 84.5432C3.79697 82.7218 2 79.5013 2 76.0332V32.697C2 29.1481 3.88093 25.865 6.94249 24.0702Z" fill="white" stroke="url(#pg5)" stroke-width="3"/>
+          <path d="M16.9463 30.187L42.9463 14.9598C46.0675 13.1318 49.9325 13.1318 53.0537 14.9598L79.0537 30.187C82.1174 31.9813 84 35.2656 84 38.816V70.2237C84 73.6935 82.2014 76.9153 79.2478 78.7361L53.2478 94.7648C50.0304 96.7483 45.9696 96.7483 42.7522 94.7648L16.7522 78.7361C13.7986 76.9153 12 73.6935 12 70.2237V38.816C12 35.2656 13.8826 31.9813 16.9463 30.187Z" fill="url(#pg6)"/>
+          <defs>
+            <linearGradient id="pg5" x1="81" y1="98" x2="53" y2="98" gradientUnits="userSpaceOnUse"><stop stop-color="#00926A"/><stop offset="1" stop-color="#007C59"/></linearGradient>
+            <linearGradient id="pg6" x1="74" y1="88" x2="52" y2="88" gradientUnits="userSpaceOnUse"><stop stop-color="#00926A"/><stop offset="1" stop-color="#007C59"/></linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <h3>Accediendo a la plataforma</h3>
+          <p>Utiliza tu login y contraseña para acceder a nuestra plataforma y comienza hoy mismo a preparar tu empresa para el crecimiento y la prosperidad.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FOOTER -->
+<!-- ============================================================ -->
+<footer>
+  <img src="https://www.ltqeducacao.com.br/wp-content/uploads/2024/06/logo_rodape.webp"
+       alt="Logo" class="footer-logo">
+  <p>COPYRIGHT® 2024 – TODOS LOS DERECHOS RESERVADOS</p>
+  <p class="contact"><strong>CONTACTO:</strong> De lunes a viernes de 10h a 17h (Horario de Brasilia). Domingos y feriados, la atención ocurre el primer día hábil siguiente.</p>
+</footer>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS -->
+<!-- ============================================================ -->
+<script>
+// FAQ accordion
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const ans  = item.querySelector('.faq-a');
+  const isOpen = ans.classList.contains('open');
+
+  // close all
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('active'));
+
+  if (!isOpen) {
+    ans.classList.add('open');
+    btn.classList.add('active');
+  }
+}
+
+// Drag-to-scroll carousel
+(function() {
+  const el = document.getElementById('carousel');
+  if (!el) return;
+  let isDown = false, startX, scrollLeft;
+  el.addEventListener('mousedown', e => {
+    isDown = true;
+    el.style.cursor = 'grabbing';
+    startX = e.pageX - el.offsetLeft;
+    scrollLeft = el.scrollLeft;
+  });
+  el.addEventListener('mouseleave', () => { isDown = false; el.style.cursor = 'grab'; });
+  el.addEventListener('mouseup', () => { isDown = false; el.style.cursor = 'grab'; });
+  el.addEventListener('mousemove', e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    el.scrollLeft = scrollLeft - (x - startX);
+  });
+
+  // Auto-scroll
+  let scrollDir = 1;
+  setInterval(() => {
+    el.scrollLeft += scrollDir;
+    if (el.scrollLeft >= el.scrollWidth - el.clientWidth - 2) scrollDir = -1;
+    if (el.scrollLeft <= 0) scrollDir = 1;
+  }, 16);
+})();
+
+// Track purchase click
+document.querySelector('.btn-cta') && document.querySelector('.btn-cta').addEventListener('click', function() {
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'InitiateCheckout');
+  }
+});
+</script>
+
+</body>
+</html>
