@@ -100,16 +100,19 @@ fbq('track', 'PageView');
       <div class="price-old">Antes: $14.97</div>
       <div class="price-big">$7.48</div>
       <div class="price-save">Ahorras 50%</div>
-      <a class="btn-gold" href="#" id="hotmart-btn-downsell-escalador">Sí, quiero mi Escalador con 50% OFF →</a>
+      <!-- HOTMART - Sales Funnel Widget -->
+      <div id="hotmart-sales-funnel"></div>
+      <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+      <script>
+      checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+      </script>
+      <!-- HOTMART - Sales Funnel Widget -->
       <div class="pricing-note">Pago único · Acceso inmediato · Garantía de 7 días.</div>
     </div>
   </div>
 </section>
 <!-- ⚠️ Reemplazar el href="#" de #hotmart-btn-downsell-escalador con el widget/link real de Hotmart para este downsell -->
 
-<div class="decline">
-  <a href="#">No, gracias, continuar sin Escalador de Empresas →</a>
-</div>
 
 <footer>
   <div style="font-weight:800;font-size:15px;">ADE <span style="font-weight:400;font-size:11px;">consultoría</span></div>

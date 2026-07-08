@@ -110,6 +110,9 @@ p.lead{ font-family:-apple-system,sans-serif; font-size:16px; color:#444; text-a
 .final-cta h2{ font-size:26px; margin-bottom:14px; max-width:480px; margin-left:auto; margin-right:auto; }
 .final-cta p{ font-family:-apple-system,sans-serif; font-size:15px; color:#555; margin-bottom:28px; }
 
+.decline{ text-align:center; padding:20px 24px 50px; }
+.decline a{ font-family:-apple-system,sans-serif; font-size:13px; color:#999; text-decoration:underline; }
+
 footer{ background:var(--teal-dark); color:#fff; text-align:center; padding:36px 24px; font-family:-apple-system,sans-serif; }
 footer p{ font-size:12px; opacity:.7; margin-top:8px; line-height:1.7; }
 
@@ -233,12 +236,20 @@ fbq('track', 'PageView');
       <div class="price-old">Precio regular: $21.71</div>
       <div class="price-big">$14.97</div>
       <div class="price-save">Ahorras 31%</div>
-      <a class="btn-gold" href="#" id="hotmart-btn-escalador">Quiero mi Escalador de Empresas →</a>
+      <!-- HOTMART - Sales Funnel Widget -->
+      <div id="hotmart-sales-funnel"></div>
+      <script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+      <script>
+      checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
+      </script>
+      <!-- HOTMART - Sales Funnel Widget -->
       <div class="pricing-note">Pago único · Acceso inmediato · La diferencia entre crecer y estancarte está en la estructura, no en la suerte.</div>
     </div>
   </div>
 </section>
 <!-- ⚠️ Reemplazar el href="#" de #hotmart-btn-escalador con el widget/link real de Hotmart para este upsell -->
+
+
 
 <!-- GUARANTEE -->
 <section class="guarantee">
