@@ -141,9 +141,10 @@ footer p{ font-size:12px; opacity:.75; margin-top:8px; line-height:1.7; }
   .feat-grid,.step-row,.benef-grid,.about-grid,.after-grid,.media-imgs{ grid-template-columns:1fr!important; }
   .step-row img{ order:-1; }
   .hero-img{ max-width:260px; }
-  .carousel img{ height:200px; }
-  .test-scroll{ flex-direction:column; overflow-x:visible; }
-  .test-scroll img{ height:auto; width:100%; }
+  .carousel{ gap:10px; }
+  .carousel img{ height:340px; border-radius:8px; }
+  .test-scroll{ flex-direction:column; overflow-x:visible; gap:14px; }
+  .test-scroll img{ height:auto; width:100%; border-radius:10px; }
   .media-full{ display:none; }
   .media-mobile{ display:flex; flex-direction:column; gap:8px; }
   .media-crop{ width:100%; background-image:url('./Foto11.webp'); background-repeat:no-repeat; border-radius:8px; }
@@ -495,7 +496,7 @@ if(c){
     if(!cloned) setup();
     const half = c.scrollWidth / 2;
     if(half <= 0) return;
-    pos += 1.5;
+    pos += 1.1;
     if(pos >= half) pos = 0;
     c.scrollLeft = pos;
   }, 30);
