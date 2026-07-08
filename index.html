@@ -572,7 +572,7 @@ if(c){
   <div class="fc-close" id="floatingCtaClose">✕</div>
   <div class="fc-info">
     <span class="fc-text">Oferta especial</span>
-    <span class="fc-price">$9.97</span>
+    <span class="fc-price" data-usd="9.97">$9.97</span>
   </div>
   <a class="fc-btn" href="https://pay.hotmart.com/A106649700F?checkoutMode=10" target="_blank" rel="noopener">Comprar ahora</a>
 </div>
@@ -622,17 +622,19 @@ if(c){
   function setCache(data){
     try{ localStorage.setItem(CACHE_KEY, JSON.stringify(Object.assign({}, data, {ts:Date.now()}))); }catch(e){}
   }
+  function formatMoney(value, currency){
+    try{
+      return new Intl.NumberFormat(undefined, { style:'currency', currency: currency, maximumFractionDigits:0 }).format(value);
+    }catch(e){
+      return Math.round(value).toLocaleString() + ' ' + currency;
+    }
+  }
   function renderConversion(currency, rate){
     document.querySelectorAll('[data-usd]').forEach(function(el){
       if(el.dataset.converted) return;
       const usd = parseFloat(el.getAttribute('data-usd'));
       if(isNaN(usd)) return;
-      const converted = Math.round(usd*rate).toLocaleString('es-ES');
-      const note = document.createElement('div');
-      note.className = 'price-convert-note';
-      note.style.cssText = 'font-family:-apple-system,sans-serif;font-size:12px;opacity:.75;margin-top:4px;';
-      note.textContent = '≈ ' + converted + ' ' + currency + ' · precio final se confirma en el checkout';
-      el.insertAdjacentElement('afterend', note);
+      el.textContent = formatMoney(usd*rate, currency);
       el.dataset.converted = '1';
     });
   }
