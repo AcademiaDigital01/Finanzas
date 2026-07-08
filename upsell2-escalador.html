@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Escalador de Empresas</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root{
+  --teal-dark:#123832;
+  --teal:#1B5E5C;
+  --gold:#C99A3E;
+  --gold-light:#E8C77E;
+  --paper:#F7F4EC;
+  --ink:#1A1A1A;
+  --green:#38C272;
+  --red-flag:#B23A2E;
+}
+body{ font-family:'Georgia',serif; background:var(--paper); color:var(--ink); }
+.sans{ font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+.container{ max-width:900px; margin:0 auto; padding:0 24px; }
+img{ max-width:100%; display:block; }
+h1,h2,h3{ font-family:'Georgia',serif; }
+
+/* HERO */
+.hero{ background:linear-gradient(160deg,var(--teal-dark) 0%,var(--teal) 100%); color:#fff; text-align:center; padding:60px 24px 30px; position:relative; overflow:hidden; }
+.badge{ display:inline-flex; align-items:center; gap:8px; background:rgba(232,199,126,.15); border:1px solid rgba(232,199,126,.4); color:var(--gold-light); padding:8px 18px; border-radius:50px; font-size:13px; font-weight:700; letter-spacing:.03em; margin-bottom:26px; font-family:-apple-system,sans-serif; text-transform:uppercase; }
+.hero h1{ font-size:40px; font-weight:700; line-height:1.25; max-width:700px; margin:0 auto 18px; }
+.hero h1 em{ font-style:italic; color:var(--gold-light); }
+.hero p.sub{ font-family:-apple-system,sans-serif; font-size:17px; opacity:.88; max-width:560px; margin:0 auto 44px; line-height:1.6; }
+
+/* STAIRCASE */
+.staircase{ display:flex; align-items:flex-end; justify-content:center; gap:0; max-width:640px; margin:0 auto; }
+.step{ font-family:-apple-system,sans-serif; display:flex; flex-direction:column; justify-content:flex-end; align-items:center; padding:14px 10px; color:#fff; font-size:11.5px; font-weight:700; text-align:center; border-top:1px solid rgba(232,199,126,.5); background:rgba(255,255,255,.04); }
+.step span{ margin-bottom:8px; line-height:1.3; }
+.step.s1{ height:70px; flex:1; }
+.step.s2{ height:100px; flex:1; }
+.step.s3{ height:130px; flex:1; }
+.step.s4{ height:165px; flex:1.15; background:rgba(232,199,126,.14); border-top:2px solid var(--gold-light); }
+.step.s4 span{ color:var(--gold-light); font-size:12.5px; }
+
+.hero-cta{ margin-top:40px; }
+.btn-gold{ display:inline-block; background:var(--green); color:#fff; font-family:-apple-system,sans-serif; font-weight:800; font-size:16px; padding:18px 42px; border-radius:8px; text-decoration:none; box-shadow:0 8px 24px rgba(56,194,114,.35); }
+.hero-price-note{ font-family:-apple-system,sans-serif; font-size:13px; opacity:.75; margin-top:14px; }
+
+/* SECTION GENERIC */
+.section{ padding:64px 24px; }
+.eyebrow{ font-family:-apple-system,sans-serif; text-transform:uppercase; letter-spacing:.08em; font-size:12px; font-weight:700; color:var(--teal); text-align:center; margin-bottom:12px; }
+h2.title{ font-size:32px; font-weight:700; text-align:center; margin-bottom:20px; color:var(--ink); max-width:680px; margin-left:auto; margin-right:auto; }
+p.lead{ font-family:-apple-system,sans-serif; font-size:16px; color:#444; text-align:center; max-width:620px; margin:0 auto 44px; line-height:1.7; }
+
+/* PROBLEM */
+.bg-dark{ background:var(--teal-dark); color:#fff; }
+.bg-dark .eyebrow{ color:var(--gold-light); }
+.bg-dark h2.title{ color:#fff; }
+.bg-dark p.lead{ color:rgba(255,255,255,.75); }
+.bottleneck{ max-width:600px; margin:0 auto; text-align:center; font-family:-apple-system,sans-serif; font-size:17px; line-height:1.8; color:rgba(255,255,255,.92); }
+.bottleneck b{ color:var(--gold-light); }
+
+/* SOLUTION CHECKLIST */
+.feature-list{ display:flex; flex-direction:column; gap:2px; max-width:680px; margin:0 auto; }
+.feature-row{ display:flex; gap:18px; align-items:flex-start; padding:20px 4px; border-bottom:1px solid rgba(27,94,92,.12); }
+.feature-row:last-child{ border-bottom:none; }
+.feature-check{ width:28px; height:28px; border-radius:50%; background:var(--teal); color:#fff; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:800; font-family:-apple-system,sans-serif; }
+.feature-text{ font-family:-apple-system,sans-serif; font-size:15.5px; color:#333; line-height:1.6; padding-top:3px; }
+.feature-text b{ color:var(--teal); }
+
+/* WHO FOR */
+.who-list{ max-width:600px; margin:0 auto; font-family:-apple-system,sans-serif; }
+.who-item{ display:flex; gap:14px; align-items:center; padding:14px 0; font-size:15.5px; color:rgba(255,255,255,.9); border-bottom:1px dashed rgba(255,255,255,.2); }
+.who-item:last-child{ border-bottom:none; }
+.who-item .ic{ color:var(--gold-light); font-size:18px; font-weight:800; flex-shrink:0; }
+
+/* INCLUDES */
+.bg-paper2{ background:#fff; }
+.includes-box{ max-width:560px; margin:0 auto; background:var(--paper); border:1px solid rgba(27,94,92,.15); border-radius:14px; padding:32px; display:flex; flex-direction:column; gap:16px; }
+.includes-row{ display:flex; gap:14px; align-items:center; font-family:-apple-system,sans-serif; font-size:15px; color:#333; }
+.includes-row .ic{ width:36px; height:36px; border-radius:8px; background:var(--teal); color:#fff; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.includes-note{ text-align:center; font-family:-apple-system,sans-serif; font-size:13px; color:#777; margin-top:18px; }
+
+/* PRICING */
+.pricing{ background:linear-gradient(160deg,var(--teal-dark) 0%,var(--teal) 100%); color:#fff; padding:70px 24px; text-align:center; }
+.pricing-box{ max-width:460px; margin:0 auto; background:rgba(0,0,0,.18); border:1px solid rgba(232,199,126,.4); border-radius:16px; padding:40px 32px; }
+.pricing-tag{ font-family:-apple-system,sans-serif; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; color:var(--gold-light); margin-bottom:18px; }
+.price-old{ font-family:-apple-system,sans-serif; font-size:16px; color:rgba(255,255,255,.55); text-decoration:line-through; margin-bottom:4px; }
+.price-big{ font-family:-apple-system,sans-serif; font-size:58px; font-weight:800; color:var(--gold-light); margin-bottom:6px; }
+.price-save{ display:inline-block; background:var(--red-flag); font-family:-apple-system,sans-serif; font-size:12px; font-weight:800; padding:5px 14px; border-radius:50px; margin-bottom:26px; }
+.pricing-box .btn-gold{ width:100%; text-align:center; }
+.pricing-note{ font-family:-apple-system,sans-serif; font-size:12.5px; opacity:.7; margin-top:16px; line-height:1.6; }
+
+/* GUARANTEE */
+.guarantee{ text-align:center; padding:56px 24px; background:#fff; }
+.seal{ width:100px; height:100px; border-radius:50%; border:3px solid var(--gold); margin:0 auto 20px; display:flex; align-items:center; justify-content:center; flex-direction:column; color:var(--teal); font-family:-apple-system,sans-serif; }
+.seal .num{ font-size:32px; font-weight:800; line-height:1; }
+.seal .txt{ font-size:9px; text-transform:uppercase; letter-spacing:.05em; }
+.guarantee h3{ font-size:22px; margin-bottom:12px; }
+.guarantee p{ font-family:-apple-system,sans-serif; font-size:14.5px; color:#555; max-width:480px; margin:0 auto; line-height:1.7; }
+
+/* FAQ */
+.faq{ max-width:700px; margin:0 auto; }
+.faq details{ background:#fff; border:1px solid rgba(27,94,92,.15); border-radius:10px; margin-bottom:10px; overflow:hidden; }
+.faq summary{ font-family:-apple-system,sans-serif; padding:16px 20px; font-weight:700; font-size:14.5px; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; color:var(--teal-dark); }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:after{ content:"+"; font-size:18px; color:var(--teal); }
+.faq details[open] summary:after{ content:"–"; }
+.faq .faq-body{ font-family:-apple-system,sans-serif; padding:0 20px 16px; font-size:14px; color:#555; line-height:1.65; }
+
+/* FINAL CTA */
+.final-cta{ background:var(--paper); text-align:center; padding:60px 24px 70px; }
+.final-cta h2{ font-size:26px; margin-bottom:14px; max-width:480px; margin-left:auto; margin-right:auto; }
+.final-cta p{ font-family:-apple-system,sans-serif; font-size:15px; color:#555; margin-bottom:28px; }
+
+footer{ background:var(--teal-dark); color:#fff; text-align:center; padding:36px 24px; font-family:-apple-system,sans-serif; }
+footer p{ font-size:12px; opacity:.7; margin-top:8px; line-height:1.7; }
+
+@media(max-width:640px){
+  .hero h1{ font-size:28px; }
+  .price-big{ font-size:46px; }
+  .staircase{ max-width:340px; }
+  .step{ font-size:9.5px; padding:10px 4px; }
+  .step.s4 span{ font-size:10.5px; }
+}
+</style>
+</head>
+<body>
+
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/es_LA/fbevents.js');
+fbq('init', '1244334197874486');
+fbq('track', 'PageView');
+</script>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="badge">📈 Oferta exclusiva — solo por esta compra</div>
+    <h1>Creciste tu negocio. <em>Tu estructura financiera, no.</em></h1>
+    <p class="sub">Pasaste de 0 a 1 producto. De 1 a 5 clientes. De local a online. Pero por dentro, tu empresa sigue operando con la estructura del año 1 — y eso ya es tu cuello de botella.</p>
+
+    <div class="staircase">
+      <div class="step s1"><span>0 → 1<br>producto</span></div>
+      <div class="step s2"><span>1 → 5<br>clientes</span></div>
+      <div class="step s3"><span>Local →<br>online</span></div>
+      <div class="step s4"><span>Siguiente:<br>ESTRUCTURA</span></div>
+    </div>
+
+    <div class="hero-cta">
+      <a class="btn-gold" href="#precio">Quiero mi Escalador de Empresas →</a>
+      <div class="hero-price-note">Oferta única disponible solo en esta página</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section bg-dark">
+  <div class="container">
+    <div class="eyebrow">El verdadero cuello de botella</div>
+    <h2 class="title">No es el mercado. Es tu estructura.</h2>
+    <p class="bottleneck">La diferencia entre la empresa que crece y la que se estanca no está en la suerte, ni en el producto. Está en <b>tener una estructura financiera</b> que aguante el siguiente nivel — antes de llegar a él.</p>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="section bg-paper2">
+  <div class="container">
+    <div class="eyebrow">La solución</div>
+    <h2 class="title">La estructura financiera completa para crecer</h2>
+    <p class="lead">Escalador de Empresas te da todo lo que hoy te falta para dejar de operar como en el año 1.</p>
+
+    <div class="feature-list">
+      <div class="feature-row">
+        <div class="feature-check">✓</div>
+        <div class="feature-text"><b>50+ plantillas financieras</b> — costos reales, presupuestos, rentabilidad por cliente.</div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-check">✓</div>
+        <div class="feature-text"><b>Análisis de rentabilidad por cliente o proyecto</b> — sabe quiénes te generan ganancia real.</div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-check">✓</div>
+        <div class="feature-text"><b>Dashboard de crecimiento</b> con proyecciones hasta 12 meses.</div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-check">✓</div>
+        <div class="feature-text"><b>Estructura tributaria escalable</b>, lista para cuando crezcas más.</div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-check">✓</div>
+        <div class="feature-text"><b>Reportes ejecutivos</b> — por si llegas a tener socios o inversionistas.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO FOR -->
+<section class="section bg-dark">
+  <div class="container">
+    <div class="eyebrow">¿Es para ti?</div>
+    <h2 class="title">Escalador de Empresas es para ti si...</h2>
+    <div class="who-list">
+      <div class="who-item"><span class="ic">✓</span> Ya vendes más de un producto o servicio</div>
+      <div class="who-item"><span class="ic">✓</span> Tienes varios clientes y no sabes cuáles realmente te dejan ganancia</div>
+      <div class="who-item"><span class="ic">✓</span> Quieres proyectar tu crecimiento, no improvisarlo mes a mes</div>
+      <div class="who-item"><span class="ic">✓</span> Piensas en algún momento tener socios o buscar inversión</div>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDES -->
+<section class="section bg-paper2">
+  <div class="container">
+    <div class="eyebrow">Qué recibes</div>
+    <h2 class="title">De por vida. Una sola compra.</h2>
+    <div class="includes-box">
+      <div class="includes-row"><div class="ic">📊</div> 50+ plantillas financieras descargables (Excel)</div>
+      <div class="includes-row"><div class="ic">📈</div> Dashboard de crecimiento con proyecciones a 12 meses</div>
+      <div class="includes-row"><div class="ic">🧾</div> Estructura tributaria escalable</div>
+      <div class="includes-row"><div class="ic">📋</div> Plantillas de reportes ejecutivos</div>
+    </div>
+    <p class="includes-note">Son tuyas, sin límite de uso — no es una suscripción.</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="precio">
+  <div class="container">
+    <div class="pricing-box">
+      <div class="pricing-tag">🎁 Oferta única — solo en esta compra</div>
+      <div class="price-old">Precio regular: $21.71</div>
+      <div class="price-big">$14.97</div>
+      <div class="price-save">Ahorras 31%</div>
+      <a class="btn-gold" href="#" id="hotmart-btn-escalador">Quiero mi Escalador de Empresas →</a>
+      <div class="pricing-note">Pago único · Acceso inmediato · La diferencia entre crecer y estancarte está en la estructura, no en la suerte.</div>
+    </div>
+  </div>
+</section>
+<!-- ⚠️ Reemplazar el href="#" de #hotmart-btn-escalador con el widget/link real de Hotmart para este upsell -->
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <div class="seal"><span class="num">7</span><span class="txt">días</span></div>
+  <h3>Garantía de 7 días</h3>
+  <p>Si el sistema no te da claridad sobre tu rentabilidad desde el primer uso, escríbenos y te devolvemos tu dinero. Sin preguntas.</p>
+</section>
+
+<!-- FAQ -->
+<section class="section bg-paper2">
+  <div class="container">
+    <h2 class="title">Preguntas frecuentes</h2>
+    <div class="faq">
+      <details>
+        <summary>¿Sirve si todavía no tengo socios ni inversionistas?</summary>
+        <div class="faq-body">Sí. La mayoría de las plantillas son para uso diario en tu operación; los reportes ejecutivos simplemente quedan listos para cuando los necesites.</div>
+      </details>
+      <details>
+        <summary>¿Cuántas plantillas son exactamente?</summary>
+        <div class="faq-body">Más de 50, organizadas por categoría: costos, presupuestos, rentabilidad, proyecciones y reportes ejecutivos.</div>
+      </details>
+      <details>
+        <summary>¿Es compatible con la Herramienta de Control Financiero que ya tengo?</summary>
+        <div class="faq-body">Sí, funciona como una capa adicional: mientras la Herramienta controla tu día a día, Escalador de Empresas te da la estructura para crecer.</div>
+      </details>
+      <details>
+        <summary>¿Necesito contador para usarlo?</summary>
+        <div class="faq-body">No es obligatorio, pero si tienes uno, las plantillas le facilitan el trabajo — están pensadas para compartirse con tu contador o asesor.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2>Deja de operar tu empresa con la estructura del año 1</h2>
+  <p>Acceso inmediato · Pago único · Garantía de 7 días</p>
+  <a class="btn-gold" href="#precio" style="background:var(--teal);">Ver oferta →</a>
+</section>
+
+<footer>
+  <div style="font-weight:800;font-size:15px;">ADE <span style="font-weight:400;font-size:11px;">consultoría</span></div>
+  <p>COPYRIGHT® 2024 – TODOS LOS DERECHOS RESERVADOS</p>
+  <p>CONTACTO: soportecompra@outlook.com</p>
+</footer>
+
+</body>
+</html>
