@@ -1,560 +1,484 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planilla de Control Financiero</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: white; color: #333; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Planilla de Control Financiero</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color:#333; background:#fff; }
+.container { max-width:1100px; margin:0 auto; padding:0 20px; }
+img { max-width:100%; display:block; }
 
-        /* HERO */
-        .hero { background: linear-gradient(135deg, #1B5E5C 0%, #2B7A77 100%); padding: 80px 20px; text-align: center; color: white; }
-        .hero-badge { display: inline-block; background: rgba(91,192,190,0.3); padding: 10px 20px; border-radius: 50px; margin-bottom: 20px; font-size: 14px; }
-        .hero h1 { font-size: 48px; font-weight: 700; line-height: 1.3; margin-bottom: 20px; }
-        .hero h1 .cyan { color: #5BC0BE; }
-        .hero p { font-size: 16px; margin-bottom: 30px; }
-        .hero img { width: 100%; max-width: 900px; margin-top: 40px; border-radius: 12px; }
+/* HERO */
+.hero{ background:linear-gradient(135deg,#0f4c46 0%,#1B5E5C 100%); color:#fff; text-align:center; padding:70px 20px 50px; }
+.hero-badge{ display:inline-flex; align-items:center; gap:8px; background:rgba(64,178,159,.25); padding:8px 18px; border-radius:50px; font-size:13px; margin-bottom:22px; }
+.hero-badge .dot{ width:18px;height:18px;background:#40B29F;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px; }
+.hero h1{ font-size:40px; font-weight:800; line-height:1.28; max-width:850px; margin:0 auto 20px; }
+.hero h1 span{ color:#4FD1C5; }
+.hero p{ font-size:16px; opacity:.9; max-width:650px; margin:0 auto 40px; }
+.hero-img{ max-width:950px; margin:0 auto; border-radius:8px; }
 
-        /* SECTION */
-        .section { padding: 60px 20px; }
-        .section-title { font-size: 36px; font-weight: 700; text-align: center; margin-bottom: 50px; color: #000; }
+/* SECTION */
+.section{ padding:60px 20px; }
+h2.title{ font-size:32px; font-weight:800; text-align:center; margin-bottom:40px; color:#111; }
 
-        /* ITEMS CON ICONOS PEQUEÑOS */
-        .items-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .item-small {
-            background: #f5f5f5;
-            padding: 20px;
-            border-radius: 12px;
-            display: flex;
-            gap: 15px;
-            align-items: flex-start;
-        }
-        .item-icon { font-size: 24px; flex-shrink: 0; }
-        .item-text { font-size: 15px; color: #333; line-height: 1.6; }
+/* LISTA - para quién */
+.pill-list{ display:flex; flex-direction:column; gap:14px; max-width:850px; margin:0 auto; }
+.pill{ background:#f3f4f4; border-radius:14px; padding:16px 22px; display:flex; align-items:center; gap:14px; font-size:15px; color:#222; }
+.pill .ic{ width:34px; height:34px; border-radius:50%; background:#111; color:#fff; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
 
-        /* GRID 2x2 CARACTERÍSTICAS */
-        .grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-bottom: 40px; }
-        .feature-box { background: #f5f5f5; padding: 30px; border-radius: 12px; }
-        .feature-box img { width: 100%; border-radius: 8px; margin-bottom: 20px; }
-        .badge-feature { display: inline-block; background: #2B7A77; color: white; padding: 8px 16px; border-radius: 50px; font-size: 12px; font-weight: 700; margin-bottom: 15px; }
-        .feature-box h3 { font-size: 18px; color: #000; margin-bottom: 12px; font-weight: 600; }
-        .feature-box p { font-size: 15px; color: #333; line-height: 1.6; }
+/* QUE POSEE - 2x2 cards */
+.feat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:30px; max-width:950px; margin:0 auto; }
+.feat-card{ background:#f3f4f4; border-radius:14px; padding:22px; }
+.feat-card img{ border-radius:8px; margin-bottom:18px; }
+.feat-badge{ display:inline-flex; align-items:center; gap:6px; background:#1B5E5C; color:#fff; font-size:11px; font-weight:700; padding:7px 14px; border-radius:50px; margin-bottom:14px; }
+.feat-card h3{ font-size:18px; font-weight:700; margin-bottom:10px; color:#111; }
+.feat-card p{ font-size:14px; color:#555; line-height:1.6; }
 
-        /* GRID 4 PROBLEMAS */
-        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .problem-item {
-            background: #f5f5f5;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-        }
-        .problem-icon { font-size: 40px; margin-bottom: 12px; }
-        .problem-text { font-size: 14px; color: #333; line-height: 1.5; }
+/* PROBLEMAS */
+.prob-grid{ display:flex; flex-direction:column; gap:14px; max-width:850px; margin:0 auto; }
+.prob{ background:#f3f4f4; border-radius:14px; padding:16px 22px; display:flex; align-items:center; gap:14px; font-size:15px; color:#222; }
+.prob .ic{ width:34px; height:34px; border-radius:50%; background:#111; color:#fff; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
 
-        /* VIDEO + TEXTO */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin: 40px 0; }
-        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; overflow: hidden; border-radius: 12px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+/* CARRUSEL */
+.carousel-wrap{ overflow:hidden; margin-top:30px; }
+.carousel{ display:flex; gap:16px; overflow-x:auto; scroll-behavior:smooth; padding-bottom:10px; }
+.carousel::-webkit-scrollbar{ display:none; }
+.carousel img{ height:420px; width:auto; border-radius:10px; flex-shrink:0; }
+.section-sub{ text-align:center; color:#666; font-size:15px; margin-top:-25px; margin-bottom:35px; }
 
-        /* TESTIMONIOS SCROLL */
-        .testimonios-scroll { display: flex; gap: 20px; overflow-x: auto; padding: 20px 0; margin: 30px 0; }
-        .testimonio-card { background: #1a1a1a; color: white; padding: 20px; border-radius: 12px; min-width: 350px; flex-shrink: 0; }
-        .testimonio-header { display: flex; gap: 10px; margin-bottom: 12px; }
-        .avatar { width: 40px; height: 40px; background: #40B29F; border-radius: 50%; flex-shrink: 0; }
-        .testimonio-user { font-weight: 600; font-size: 13px; }
-        .testimonio-time { font-size: 12px; color: #aaa; }
-        .testimonio-text { font-size: 14px; line-height: 1.6; margin-bottom: 10px; }
+/* PASOS */
+.step-row{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; margin-bottom:55px; }
+.step-num{ width:46px; height:46px; border-radius:50%; background:#1B5E5C; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:20px; margin-bottom:16px; }
+.step-row h3{ font-size:22px; font-weight:800; margin-bottom:12px; color:#111; }
+.step-row p{ font-size:15px; color:#555; line-height:1.7; }
+.step-row img{ border-radius:10px; }
 
-        /* CAJAS VERDES 2x2 */
-        .grid-2x2-dark { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .box-dark {
-            background: #2B7A77;
-            color: white;
-            padding: 30px;
-            border-radius: 12px;
-        }
-        .box-dark-icon { font-size: 36px; margin-bottom: 15px; }
-        .box-dark h3 { font-size: 16px; color: #5BC0BE; margin-bottom: 12px; font-weight: 600; }
-        .box-dark p { font-size: 14px; line-height: 1.7; opacity: 0.95; }
+/* MEDIOS */
+.media-logos{ display:flex; justify-content:center; align-items:center; gap:40px; flex-wrap:wrap; margin-bottom:35px; opacity:.85; }
+.media-imgs{ display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:800px; margin:0 auto; }
+.media-imgs img{ border-radius:10px; width:100%; }
+.media-imgs .full{ grid-column:1/3; }
 
-        /* PASO NÚMEROS */
-        .step-num { display: inline-flex; align-items: center; justify-content: center; width: 50px; height: 50px; background: #2B7A77; color: white; border-radius: 50%; font-size: 24px; font-weight: 700; margin-bottom: 15px; }
-        .step-title { font-size: 20px; font-weight: 600; margin-bottom: 12px; }
-        .step-text { font-size: 15px; color: #333; line-height: 1.7; }
+/* TESTIMONIOS oscuros - carrusel vertical screenshots */
+.dark-section{ background:#1B5E5C; color:#fff; padding:60px 20px; }
+.dark-section h2.title{ color:#fff; }
+.test-scroll{ display:flex; gap:18px; overflow-x:auto; padding-bottom:10px; }
+.test-scroll::-webkit-scrollbar{ display:none; }
+.test-scroll img{ height:480px; width:auto; border-radius:14px; flex-shrink:0; }
 
-        /* GARANTÍA */
-        .garantia { text-align: center; padding: 40px 20px; }
-        .numero-7 { display: inline-flex; align-items: center; justify-content: center; width: 120px; height: 120px; border: 3px solid #40B29F; border-radius: 50%; font-size: 56px; font-weight: 700; color: #2B7A77; background: rgba(64,178,159,0.1); margin: 0 auto 20px; }
-        .garantia h2 { font-size: 28px; font-weight: 700; margin-bottom: 15px; }
-        .garantia p { font-size: 15px; color: #666; max-width: 600px; margin: 0 auto; line-height: 1.8; }
+/* BENEFICIOS 2x2 */
+.benef-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:950px; margin:0 auto; }
+.benef{ background:#1B5E5C; color:#fff; border-radius:14px; padding:26px; }
+.benef .ic{ font-size:30px; margin-bottom:14px; }
+.benef h3{ font-size:16px; font-weight:700; margin-bottom:10px; color:#5EE6C6; }
+.benef p{ font-size:14px; line-height:1.6; opacity:.92; }
 
-        /* PRICING */
-        .pricing { background: #2B7A77; color: white; padding: 60px 20px; }
-        .pricing-box {
-            background: rgba(0,0,0,0.2);
-            border: 2px solid #5BC0BE;
-            padding: 40px;
-            border-radius: 12px;
-            max-width: 550px;
-            margin: 0 auto;
-        }
-        .pricing-title { font-size: 16px; margin-bottom: 15px; }
-        .pricing-subtitle { font-size: 18px; margin-bottom: 20px; font-weight: 600; }
-        .price-old { font-size: 13px; color: #aaa; text-decoration: line-through; margin-bottom: 10px; }
-        .price-big { font-size: 56px; font-weight: 700; color: #5BC0BE; margin: 15px 0; }
-        .price-info { font-size: 13px; color: #ddd; margin-bottom: 30px; }
-        .price-list { text-align: left; list-style: none; margin: 30px 0; }
-        .price-list li { padding: 10px 0; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .price-list li:before { content: "• "; color: #5BC0BE; margin-right: 10px; }
+/* VIDEO + QUOTES */
+.quotes{ max-width:750px; margin:35px auto 0; display:flex; flex-direction:column; gap:20px; }
+.video-box{ max-width:340px; margin:0 auto 30px; position:relative; padding-bottom:60%; height:0; border-radius:16px; overflow:hidden; }
+.video-box iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+.quote{ background:#f3f4f4; border-radius:14px; padding:22px 26px; font-size:14px; color:#333; }
+.quote p.txt{ font-style:italic; margin-bottom:10px; line-height:1.6; }
+.quote .who{ font-weight:700; color:#1B5E5C; }
 
-        .btn {
-            width: 100%;
-            background: #38C272;
-            color: white;
-            padding: 16px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 20px;
-        }
+/* GARANTIA */
+.garantia{ text-align:center; padding:50px 20px; }
+.badge-circle{ width:110px; height:110px; border-radius:50%; border:3px solid #40B29F; display:flex; align-items:center; justify-content:center; font-size:48px; font-weight:800; color:#1B5E5C; margin:0 auto 20px; }
+.garantia h2{ font-size:26px; font-weight:800; margin-bottom:16px; }
+.garantia p{ font-size:15px; color:#555; max-width:600px; margin:0 auto; line-height:1.8; }
 
-        /* FAQ */
-        .faq-container { max-width: 1000px; margin: 0 auto; }
-        .faq-q { background: #2B7A77; color: white; padding: 18px 20px; border-radius: 50px; cursor: pointer; font-weight: 600; margin-bottom: 15px; }
-        .faq-a { background: #f5f5f5; padding: 18px 20px; border-radius: 8px; font-size: 14px; color: #333; line-height: 1.7; display: none; margin-bottom: 15px; }
-        .faq-a.active { display: block; }
+/* LOGO SHIELD */
+.logo-shield{ text-align:center; padding:20px 20px 0; }
+.logo-shield .box{ width:90px; height:110px; background:#1B5E5C; border-radius:14px 14px 30% 30%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:800; font-size:15px; margin:0 auto; line-height:1.2; }
 
-        /* GRID 3 DESPUÉS COMPRAR */
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .card-after {
-            background: #f5f5f5;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-        }
-        .card-after-icon { font-size: 40px; margin-bottom: 15px; }
-        .card-after h3 { font-size: 16px; font-weight: 600; color: #000; margin-bottom: 10px; }
-        .card-after p { font-size: 14px; color: #666; line-height: 1.6; }
+/* PRICING */
+.pricing{ background:#1B5E5C; color:#fff; padding:50px 20px 70px; text-align:center; }
+.pricing .tag{ display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,.12); padding:8px 18px; border-radius:50px; font-size:13px; font-weight:700; margin-bottom:18px; }
+.pricing h3{ font-size:20px; font-weight:700; margin-bottom:30px; max-width:500px; margin-left:auto; margin-right:auto; }
+.pricing-box{ max-width:480px; margin:0 auto; text-align:left; }
+.pricing-box h4{ font-size:19px; font-weight:800; text-align:center; margin-bottom:24px; }
+.price-list{ list-style:none; margin-bottom:24px; }
+.price-list li{ padding:11px 0; border-bottom:1px solid rgba(255,255,255,.15); font-size:14px; display:flex; gap:10px; }
+.price-list li:before{ content:"✓"; color:#5EE6C6; font-weight:800; flex-shrink:0; }
+.no-fee{ text-align:center; font-weight:800; font-size:16px; margin:24px 0; line-height:1.5; }
+.price-final{ text-align:center; }
+.price-old{ font-size:14px; opacity:.7; margin-bottom:6px; }
+.price-big{ font-size:52px; font-weight:800; color:#5EE6C6; margin-bottom:24px; }
+.btn-buy{ display:block; width:100%; background:#38C272; color:#fff; border:none; padding:18px; border-radius:10px; font-size:16px; font-weight:800; cursor:pointer; }
+.btn-buy:hover{ background:#2fa860; }
 
-        /* QUIÉN SOMOS */
-        .about-text { font-size: 15px; color: #333; line-height: 1.9; margin-bottom: 20px; }
+/* QUIEN SOMOS */
+.about-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:45px; align-items:center; max-width:950px; margin:0 auto; }
+.about-grid img{ border-radius:14px; }
+.about-grid p{ font-size:15px; color:#444; line-height:1.85; margin-bottom:16px; }
 
-        /* FOOTER */
-        .footer { background: #1B5E5C; color: white; text-align: center; padding: 40px 20px; border-top: 3px solid #5BC0BE; }
-        .footer-logo { font-size: 18px; font-weight: 700; margin-bottom: 15px; }
-        .footer p { font-size: 13px; line-height: 1.7; margin: 8px 0; }
+/* FAQ */
+.faq{ max-width:850px; margin:0 auto; }
+.faq details{ background:#1B5E5C; color:#fff; border-radius:12px; margin-bottom:12px; overflow:hidden; }
+.faq summary{ padding:18px 22px; font-weight:700; font-size:15px; cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:after{ content:"+"; font-size:20px; }
+.faq details[open] summary:after{ content:"–"; }
+.faq .faq-body{ background:#f3f4f4; color:#333; padding:18px 22px; font-size:14px; line-height:1.7; }
 
-        /* BG */
-        .bg-light { background: #f5f5f5; }
-        .bg-green { background: #2B7A77; color: white; }
-        .bg-green .section-title { color: white; }
+/* DESPUES DE COMPRAR */
+.after-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:30px; max-width:950px; margin:0 auto; }
+.after-item .num{ width:44px; height:44px; border-radius:50%; background:#1B5E5C; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800; margin-bottom:14px; }
+.after-item h3{ font-size:16px; font-weight:700; margin-bottom:10px; color:#111; }
+.after-item p{ font-size:14px; color:#555; line-height:1.6; }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 32px; }
-            .grid-2x2, .grid-4, .grid-3, .grid-2, .grid-2x2-dark { grid-template-columns: 1fr; }
-        }
-    </style>
+/* FOOTER */
+footer{ background:#0f3d3a; color:#fff; text-align:center; padding:45px 20px; }
+footer p{ font-size:12px; opacity:.75; margin-top:8px; line-height:1.7; }
+
+.bg-light{ background:#fafafa; }
+
+@media(max-width:768px){
+  .hero h1{ font-size:28px; }
+  .feat-grid,.step-row,.benef-grid,.about-grid,.after-grid,.media-imgs{ grid-template-columns:1fr!important; }
+  .step-row img{ order:-1; }
+}
+</style>
 </head>
 <body>
 
-    <!-- FACEBOOK PIXEL -->
-    <script>
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-        document,'script','https://connect.facebook.net/es_LA/fbevents.js');
-        fbq('init', '1244334197874486');
-        fbq('track', 'PageView');
-    </script>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/es_LA/fbevents.js');
+fbq('init', '1244334197874486');
+fbq('track', 'PageView');
+</script>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-badge">ℹ️ ¡LA MEJOR OPORTUNIDAD DE 2026!</div>
-            <h1>La herramienta que necesitas para tener total claridad sobre las finanzas de tu empresa y <span class="cyan">¡Por fin entiendes tu verdadero beneficio!</span></h1>
-            <p>Se acabaron las dudas. Se acabaron las conjeturas. Sepa con exactitud cuánto gana o pierde su empresa cada mes.</p>
-            <img src="./images/foto1.webp" alt="Herramienta">
-        </div>
-    </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge"><span class="dot">!</span> ¡LA MEJOR OPORTUNIDAD DE 2026!</div>
+    <h1>La herramienta que necesitas para tener claridad total sobre el dinero de tu empresa y <span>por fin entender tu ganancia real!</span></h1>
+    <p>Se acabaron las dudas. Se acabaron las suposiciones. Sabe con exactitud cuánto está ganando o perdiendo tu empresa cada mes.</p>
+    <img class="hero-img" src="./images/foto1.webp" alt="Planilla de Control Financiero">
+  </div>
+</section>
 
-    <!-- PARA QUIÉN -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Esta hoja de cálculo fue creada para usted:</h2>
-            <div class="items-list">
-                <div class="item-small">
-                    <div class="item-icon">💰</div>
-                    <div class="item-text">Saber cuánto beneficio estás obteniendo de una manera sencilla e intuitiva.</div>
-                </div>
-                <div class="item-small">
-                    <div class="item-icon">📊</div>
-                    <div class="item-text">Identificar dónde se produce el mayor gasto de la operación.</div>
-                </div>
-                <div class="item-small">
-                    <div class="item-icon">⏰</div>
-                    <div class="item-text">Ahorrar tiempo y anticipar posibles problemas de flujo de caja.</div>
-                </div>
-                <div class="item-small">
-                    <div class="item-icon">🎯</div>
-                    <div class="item-text">Tener todas tus finanzas en un solo lugar, incluso si no sabes usar Excel.</div>
-                </div>
-                <div class="item-small">
-                    <div class="item-icon">🧠</div>
-                    <div class="item-text">Tener mayor claridad sobre todo lo que está sucediendo, agilizando la toma de decisiones.</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- PARA QUIEN -->
+<section class="section">
+  <div class="container">
+    <h2 class="title">La planilla fue desarrollada para ti:</h2>
+    <div class="pill-list">
+      <div class="pill"><span class="ic">💰</span> Saber cuánto estás ganando de forma simple e intuitiva</div>
+      <div class="pill"><span class="ic">📊</span> Identificar dónde está el mayor gasto de la operación</div>
+      <div class="pill"><span class="ic">⏱️</span> Ganar tiempo y anticipar posibles problemas en la caja</div>
+      <div class="pill"><span class="ic">🎯</span> Tener todo tu financiero en un único lugar, incluso sin saber usar Excel</div>
+      <div class="pill"><span class="ic">🧠</span> Tener más claridad sobre todo lo que está pasando, agilizando las decisiones</div>
+    </div>
+  </div>
+</section>
 
-    <!-- QUÉ INCLUYE -->
-    <section class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">Qué incluye la herramienta:</h2>
-            
-            <div class="grid-2x2">
-                <div class="feature-box">
-                    <img src="./images/foto2.webp" alt="Gráficos">
-                    <div class="badge-feature">→ CRECIMIENTO DIRECCIONADO</div>
-                    <h3>Gráficos automatizados</h3>
-                    <p>Obten una visión general completa de tu vida financiera con la ayuda de gráficos automatizados, todo en un mismo lugar, un resumen detallado y toma decisiones financieras inteligentes.</p>
-                </div>
+<!-- QUE POSEE LA HERRAMIENTA -->
+<section class="section bg-light">
+  <div class="container">
+    <h2 class="title">Lo que la Herramienta posee:</h2>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <img src="./images/foto2.webp" alt="Gráficos Automatizados">
+        <div class="feat-badge">→ CRECIMIENTO DIRIGIDO</div>
+        <h3>Gráficos Automatizados</h3>
+        <p>Ten una visión general de tu vida financiera con ayuda de gráficos automatizados en un solo lugar, un resumen detallado, y toma decisiones financieras inteligentes.</p>
+      </div>
+      <div class="feat-card">
+        <img src="./images/foto3.webp" alt="Simple de usar">
+        <div class="feat-badge">→ TODO EN UN SOLO LUGAR</div>
+        <h3>Simple de usar</h3>
+        <p>No se necesita experiencia en Excel, usa la planilla como una aplicación y ajústala para reflejar tus necesidades.</p>
+      </div>
+      <div class="feat-card">
+        <img src="./images/foto4.webp" alt="Navegación Intuitiva">
+        <div class="feat-badge">→ ACCESO FÁCIL</div>
+        <h3>Navegación Intuitiva</h3>
+        <p>Registrarás las principales cuentas pagadas y recibidas del mes para tener todo en un único lugar. Acompaña y analiza de forma completa e intuitiva todas tus finanzas.</p>
+      </div>
+      <div class="feat-card">
+        <img src="./images/foto5.webp" alt="Controla tus ingresos y gastos">
+        <div class="feat-badge">→ CRECIMIENTO DIRIGIDO</div>
+        <h3>Controla tus ingresos y gastos</h3>
+        <p>Registra y categoriza tus ingresos y gastos de forma sistemática. Esto ayuda a tener una visión clara de cómo estás gastando tu dinero e identificar áreas donde puedes ahorrar.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <div class="feature-box">
-                    <img src="./images/foto3.webp" alt="Fácil">
-                    <div class="badge-feature">→ TODO NUM SÓ LUGAR</div>
-                    <h3>Fácil de usar</h3>
-                    <p>No se requiere experiencia con Excel; utilice la hoja de cálculo como una aplicación y ajústela a sus necesidades.</p>
-                </div>
+<!-- PROBLEMAS -->
+<section class="section">
+  <div class="container">
+    <h2 class="title">¿Por acaso pasas o ya pasaste por una de estas situaciones?</h2>
+    <div class="prob-grid">
+      <div class="prob"><span class="ic">❓</span> ¿Tienes dificultad para identificar las entradas y salidas de caja?</div>
+      <div class="prob"><span class="ic">⏳</span> ¿Pierdes tiempo revisando varias cuentas para saber cuánto vendiste?</div>
+      <div class="prob"><span class="ic">😕</span> ¿Te sientes perdido sin saber cuánto es el costo, el impuesto o la ganancia?</div>
+      <div class="prob"><span class="ic">😴</span> ¿Pierdes horas haciendo el control financiero de la empresa?</div>
+    </div>
+  </div>
+</section>
 
-                <div class="feature-box">
-                    <img src="./images/foto4.webp" alt="Navegación">
-                    <div class="badge-feature">→ ACESSO FÁCIL</div>
-                    <h3>Navegación intuitiva</h3>
-                    <p>Registrarás las principales facturas pagadas y recibidas del mes para tenerlo todo centralizado. Controla y analiza de forma completa e intuitiva todas tus finanzas.</p>
-                </div>
+<!-- RESULTADOS - CARRUSEL -->
+<section class="section bg-light">
+  <div class="container">
+    <h2 class="title">Mira los resultados de emprendedores que usan la planilla:</h2>
+    <p class="section-sub">Ya son más de 30 mil dueños de negocios usando nuestra herramienta en 2026</p>
+    <div class="carousel-wrap">
+      <div class="carousel" id="carousel1">
+        <img src="./images/foto6.webp" alt="Resultado">
+        <img src="./images/foto7.webp" alt="Resultado">
+      </div>
+    </div>
+  </div>
+</section>
 
-                <div class="feature-box">
-                    <img src="./images/foto5.webp" alt="Ingresos">
-                    <div class="badge-feature">→ CRECIMIENTO DIRECCIONADO</div>
-                    <h3>Controla tus ingresos y gastos.</h3>
-                    <p>Registra y clasifica sistemáticamente tus ingresos y gastos. Esto te ayudará a tener una visión clara de cómo gastas tu dinero e identificar áreas donde puedes ahorrar.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- 3 PASOS -->
+<section class="section">
+  <div class="container">
+    <h2 class="title">¡Tu financiero organizado en 3 simples pasos!</h2>
 
-    <!-- PROBLEMAS -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">¿Alguna vez has vivido alguna de estas situaciones?</h2>
-            <div class="grid-4">
-                <div class="problem-item">
-                    <div class="problem-icon">❓</div>
-                    <div class="problem-text">¿Tiene problemas para identificar las entradas y salidas de efectivo?</div>
-                </div>
-                <div class="problem-item">
-                    <div class="problem-icon">⏳</div>
-                    <div class="problem-text">¿Pierdes tiempo revisando varias cuentas para averiguar cuánto vendiste?</div>
-                </div>
-                <div class="problem-item">
-                    <div class="problem-icon">😕</div>
-                    <div class="problem-text">¿Estás perdido y no estás seguro del costo, los impuestos o las ganancias?</div>
-                </div>
-                <div class="problem-item">
-                    <div class="problem-icon">😴</div>
-                    <div class="problem-text">¿Pasar horas gestionando las finanzas de la empresa?</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="step-row">
+      <img src="./images/foto8.webp" alt="Paso 1">
+      <div>
+        <div class="step-num">1</div>
+        <h3>Registra tus cuentas</h3>
+        <p>Registrarás las principales cuentas a pagar y recibir del mes para tener todo en un único lugar.</p>
+      </div>
+    </div>
 
-    <!-- RESULTADOS -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Vea los resultados de los emprendedores que utilizan la hoja de cálculo:</h2>
-            <p style="text-align: center; font-size: 16px; color: #666; margin-bottom: 30px;">Más de 30.000 empresarios ya utilizan nuestra herramienta, y para 2026…</p>
-            <img src="./images/foto11.webp" alt="Resultados" style="width: 100%; border-radius: 12px;">
-        </div>
-    </section>
+    <div class="step-row">
+      <div>
+        <div class="step-num">2</div>
+        <h3>Registra todas las entradas y salidas</h3>
+        <p>Sabe exactamente cuánto entra y sale todos los días, formas de pago, valores y fechas.</p>
+      </div>
+      <img src="./images/foto9.webp" alt="Paso 2">
+    </div>
 
-    <!-- 3 PASOS -->
-    <section class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">¡Organiza tus finanzas en 3 sencillos pasos!</h2>
+    <div class="step-row">
+      <img src="./images/foto10.webp" alt="Paso 3">
+      <div>
+        <div class="step-num">3</div>
+        <h3>Tu empresa mapeada en la palma de tu mano</h3>
+        <p>Ten informes personalizados con gráficos intuitivos y fáciles de leer en un clic.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <div class="grid-2">
-                <div><img src="./images/foto8.webp" alt="Paso 1" style="width: 100%; border-radius: 12px;"></div>
-                <div>
-                    <div class="step-num">1</div>
-                    <div class="step-title">Registra tus cuentas</div>
-                    <div class="step-text">Deberás registrar las principales facturas que se pagarán y se recibirán durante el mes para tener todo centralizado.</div>
-                </div>
-            </div>
+<!-- MEDIOS -->
+<section class="section bg-light">
+  <div class="container">
+    <h2 class="title">¡Salimos destacados en los principales medios!</h2>
+    <img src="./images/foto11.webp" alt="Medios de comunicación" style="max-width:750px;margin:0 auto;">
+  </div>
+</section>
 
-            <div class="grid-2">
-                <div>
-                    <div class="step-num">2</div>
-                    <div class="step-title">2. Registre todas las entradas y salidas.</div>
-                    <div class="step-text">Sepa exactamente cuánto dinero entra y sale cada día, los métodos de pago, los importes y las fechas.</div>
-                </div>
-                <div><img src="./images/foto9.webp" alt="Paso 2" style="width: 100%; border-radius: 12px;"></div>
-            </div>
+<!-- TESTIMONIOS OSCUROS -->
+<section class="dark-section">
+  <div class="container">
+    <h2 class="title">Son más de 30 mil emprendedores usando la herramienta a la que puedes tener acceso ahora:</h2>
+    <div class="test-scroll">
+      <img src="./images/foto12.webp" alt="Testimonio">
+      <img src="./images/foto13.webp" alt="Testimonio">
+      <img src="./images/foto14.webp" alt="Testimonio">
+      <img src="./images/foto15.webp" alt="Testimonio">
+    </div>
+  </div>
+</section>
 
-            <div class="grid-2">
-                <div><img src="./images/foto10.webp" alt="Paso 3" style="width: 100%; border-radius: 12px;"></div>
-                <div>
-                    <div class="step-num">3</div>
-                    <div class="step-title">Tu empresa representada en la palma de tu mano.</div>
-                    <div class="step-text">Obtén informes personalizados con gráficos intuitivos y fáciles de leer con un solo clic.</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- BENEFICIOS -->
+<section class="section">
+  <div class="container">
+    <h2 class="title">Adquiriendo la planilla ahora, recibirás:</h2>
+    <div class="benef-grid">
+      <div class="benef">
+        <div class="ic">📱</div>
+        <h3>Soporte vía WhatsApp de lunes a viernes de 10h a 17h</h3>
+        <p>Tendrás un soporte 100% dedicado para resolver todas tus dudas y ayudarte a organizar tu financiero.</p>
+      </div>
+      <div class="benef">
+        <div class="ic">📚</div>
+        <h3>Más 20 clases sobre Finanzas para desarrollarte</h3>
+        <p>También recibirás 20 clases sobre lo básico de finanzas empresariales para desarrollarte, una clase PRÁCTICA DE CÓMO REDUCIR COSTOS en tu empresa y 2 ebooks bono para ayudarte en el camino.</p>
+      </div>
+      <div class="benef">
+        <div class="ic">🎓</div>
+        <h3>Clase y tutorial completo de cómo usar la planilla</h3>
+        <p>Además de la Planilla, también tendrás acceso al paso a paso explicando todo lo que necesitas saber para implementar la herramienta en tu negocio.</p>
+      </div>
+      <div class="benef">
+        <div class="ic">🎁</div>
+        <h3>Recibe de regalo: Planilla de Finanzas Personales</h3>
+        <p>¡Recibe también una planilla de finanzas personales para poder organizar tu vida fuera de la empresa también! Al final, la organización lo es todo...</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- MEDIOS -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">¡Salimos en los principales medios de comunicación!</h2>
-            <img src="./images/foto12.webp" alt="Medios" style="width: 100%; border-radius: 12px; margin: 30px 0;">
-        </div>
-    </section>
+<!-- VIDEO / QUOTES -->
+<section class="section bg-light">
+  <div class="container">
+    <h2 class="title">¿Aún tienes dudas si es para ti?</h2>
+    <p class="section-sub">Conoce un poco el impacto en la vida de nuestros alumnos</p>
+    <div class="video-box">
+      <iframe src="https://www.youtube.com/embed/VZfOQQ0ntHI" allowfullscreen allow="autoplay"></iframe>
+    </div>
+    <div class="quotes">
+      <div class="quote">
+        <p class="txt">"Yo no tenía ningún control sobre lo que entraba y salía de mi empresa... La planilla ha cambiado totalmente mi vida financiera."</p>
+        <p class="who">Paulo - Açaiteria</p>
+      </div>
+      <div class="quote">
+        <p class="txt">"Yo estaba totalmente perdido sin usar esta planilla y ella me ha ayudado mucho. Es muy fácil, muy práctica y me ahorra tiempo."</p>
+        <p class="who">Comercial Importadora Exportadora</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- TESTIMONIOS SCROLL -->
-    <section class="section bg-green">
-        <div class="container">
-            <h2 class="section-title">Más de 30.000 emprendedores están utilizando la herramienta a la que puedes acceder ahora:</h2>
-            
-            <div class="testimonios-scroll">
-                <div class="testimonio-card">
-                    <div class="testimonio-header">
-                        <div class="avatar"></div>
-                        <div>
-                            <div class="testimonio-user">Gracielle Cavalcante</div>
-                            <div class="testimonio-time">36s atrás</div>
-                        </div>
-                    </div>
-                    <p class="testimonio-text">Eu adquiri e facilitou muito minha vida!</p>
-                    <div>❤️</div>
-                </div>
+<!-- GARANTIA -->
+<section class="garantia">
+  <div class="badge-circle">7</div>
+  <h2>Garantía de 7 Días</h2>
+  <p>Si realizas la inversión y no te gusta la Planilla de Control Financiero, por cualquier motivo y quieres tu dinero de vuelta, basta con enviar un mensaje y te devolveremos inmediatamente todo tu dinero, ¡sin ninguna burocracia!</p>
+</section>
 
-                <div class="testimonio-card">
-                    <div class="testimonio-header">
-                        <div class="avatar"></div>
-                        <div>
-                            <div class="testimonio-user">Fabiano Cardoso</div>
-                            <div class="testimonio-time">2d atrás</div>
-                        </div>
-                    </div>
-                    <p class="testimonio-text">Eu uso, precisei do suporte e eles prontamente me ajudaram, vale a pena a planilha!!!!</p>
-                    <div>❤️</div>
-                </div>
+<!-- LOGO SHIELD -->
+<div class="logo-shield">
+  <div class="box">LTQ<br><span style="font-size:9px;font-weight:400;">educação</span></div>
+</div>
 
-                <div class="testimonio-card">
-                    <div class="testimonio-header">
-                        <div class="avatar"></div>
-                        <div>
-                            <div class="testimonio-user">Afroflora</div>
-                            <div class="testimonio-time">10s atrás</div>
-                        </div>
-                    </div>
-                    <p class="testimonio-text">Tomei coragem, não me aguentei e hoje, finalmente adquiri a planilha. Estou amando. Simples, prática!</p>
-                    <div>❤️</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- PRICING -->
+<section class="pricing">
+  <div class="container">
+    <h2 class="title" style="color:#fff;">¡Oferta Exclusiva!</h2>
+    <div class="tag">🎁 Oportunidad Única</div>
+    <h3>¡Transforma por completo la gestión financiera de tu empresa!</h3>
 
-    <!-- AL COMPRAR AHORA -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Al comprar la hoja de cálculo ahora, recibirá:</h2>
+    <div class="pricing-box">
+      <h4>TODO con ACCESO DE POR VIDA por apenas...</h4>
+      <ul class="price-list">
+        <li>Planilla de Control Financiero para empresas</li>
+        <li>Planilla de Finanzas Personales</li>
+        <li>Clases Tutoriales de las Planillas</li>
+        <li>Acceso a la Comunidad VIP</li>
+        <li>Acceso al Entrenamiento ABC de las Finanzas, con más de 20 clases sobre finanzas básicas</li>
+        <li>Clase bono para reducir Costos en la Práctica</li>
+        <li>Acceso a los 2 Bonos Exclusivos</li>
+        <li>Soporte por WhatsApp</li>
+      </ul>
+      <div class="no-fee">¡Sin Mensualidades,<br>el pago es ÚNICO!</div>
+      <div class="price-final">
+        <div class="price-old">de $397.00 por apenas:</div>
+        <div class="price-big">$9.97</div>
+      </div>
+      <button class="btn-buy" onclick="alert('Reemplaza este botón con tu enlace de Hotmart')">¡Acceso Inmediato y de por Vida!</button>
+    </div>
+  </div>
+</section>
 
-            <div class="grid-2x2-dark">
-                <div class="box-dark">
-                    <div class="box-dark-icon">📱</div>
-                    <h3>Soporte vía WhatsAppDe lunes a viernes de 10:00 a 17:00.</h3>
-                    <p>Contarás con asistencia personalizada al 100% para responder a todas tus preguntas y ayudarte a organizar tus finanzas.</p>
-                </div>
+<!-- QUIEN SOMOS -->
+<section class="section">
+  <div class="container">
+    <h2 class="title">¿Quiénes somos nosotros?</h2>
+    <div class="about-grid">
+      <img src="./images/foto16.webp" alt="Equipo LTQ">
+      <div>
+        <p>Nuestra misión es ayudar al pequeño emprendedor a gestionar su empresa a través de herramientas fáciles de usar y por medio de la Educación.</p>
+        <p>Creemos que hablando de forma simple y de lo que realmente importa para ti, emprendedor, es que la transformación sucede.</p>
+        <p>Además de nuestras herramientas y entrenamientos, creemos que el soporte a nuestros clientes es uno de los pilares de la transformación, y por eso tendrás el apoyo de nuestro equipo de Especialistas para ayudarte, resolviendo todas tus dudas directamente por WhatsApp.</p>
+        <p>¡A partir de ahora, cuenta con LTQ Educación para transformar tu gestión y hacer prosperar tu empresa!</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <div class="box-dark">
-                    <div class="box-dark-icon">📚</div>
-                    <h3>Más20 lecciones sobre finanzasdesarrollar</h3>
-                    <p>También recibirás 20 lecciones sobre los fundamentos de las finanzas empresariales para ayudarte a desarrollar tus habilidades, una lección PRÁCTICA sobre CÓMO REDUCIR COSTOS en tu empresa y 2 libros electrónicos adicionales.</p>
-                </div>
+<!-- FAQ -->
+<section class="section bg-light">
+  <div class="container">
+    <h2 class="title">Preguntas Frecuentes:</h2>
+    <div class="faq">
+      <details>
+        <summary>¿Necesito entender de Excel?</summary>
+        <div class="faq-body">No, completarás algunas informaciones y tendrás acceso automatizado a todos los informes y análisis. Además, tendrás todo el soporte necesario de nuestro equipo, que estará listo para ayudarte en el proceso.</div>
+      </details>
+      <details>
+        <summary>¿Es seguro guardar mis informaciones financieras en la Planilla?</summary>
+        <div class="faq-body">Sí, es seguro guardar tus informaciones financieras en la Planilla de Control Financiero. Como nuestra planilla es en Excel, las informaciones se guardan localmente en el dispositivo del usuario. Tienes total control y privacidad sobre tus datos, pues solo tú tendrás acceso a ellos.</div>
+      </details>
+      <details>
+        <summary>¿Qué versión de Excel es compatible con la planilla?</summary>
+        <div class="faq-body">La planilla de Control Financiero es compatible a partir de la versión de Excel 2013. Esto significa que también puedes usar la planilla en versiones más recientes de Excel, como Excel 2016, 2019, 2021. Asegúrate de tener una versión compatible de Excel instalada en tu computadora para disfrutar de todos los recursos y funcionalidades ofrecidos.</div>
+      </details>
+      <details>
+        <summary>¿La Planilla funciona en Google Sheets?</summary>
+        <div class="faq-body">No. Por contener lenguaje de programación VBA, que es de propiedad exclusiva de Microsoft, Google Sheets no funcionará.</div>
+      </details>
+      <details>
+        <summary>¿La Planilla funciona en Macbook?</summary>
+        <div class="faq-body">Sí, siempre que tengas Excel instalado (no puede ser Calc).</div>
+      </details>
+      <details>
+        <summary>¿La Planilla funciona en el Celular?</summary>
+        <div class="faq-body">No. Por contener lenguaje de programación VBA, que es de propiedad exclusiva de Microsoft Excel Desktop, la herramienta solo funciona en computadoras.</div>
+      </details>
+      <details>
+        <summary>Quiero compartir con mi equipo, ¿es posible?</summary>
+        <div class="faq-body">Sí. A través de los servicios en la nube (Google Drive, Dropbox y OneDrive) es posible dejar la Planilla compartida. Si no sabes cómo hacer ese proceso, contacta a nuestro equipo de soporte vía WhatsApp, que te ayudará con la configuración sin ningún costo adicional.</div>
+      </details>
+    </div>
+  </div>
+</section>
 
-                <div class="box-dark">
-                    <div class="box-dark-icon">🎓</div>
-                    <h3>Lección y tutorialcompletosCómo usar la hoja de cálculo</h3>
-                    <p>Además de la hoja de cálculo, también tendrá acceso a una guía paso a paso que explica todo lo que necesita saber para implementar la herramienta en su negocio.</p>
-                </div>
+<!-- DESPUES DE COMPRAR -->
+<section class="section">
+  <div class="container">
+    <h2 class="title">Compré la Planilla, ¿y ahora?</h2>
+    <div class="after-grid">
+      <div class="after-item">
+        <div class="num">1</div>
+        <h3>Confirmación de Compra en el E-mail</h3>
+        <p>En el checkout de pago recibirás un aviso sobre el estado de tu compra. En cuanto el pago sea confirmado, tu acceso a la plataforma será liberado.</p>
+      </div>
+      <div class="after-item">
+        <div class="num">2</div>
+        <h3>Instrucciones de acceso</h3>
+        <p>En el correo que registraste en el checkout al momento de la compra, llegarán todas tus informaciones e instrucciones de acceso.</p>
+      </div>
+      <div class="after-item">
+        <div class="num">3</div>
+        <h3>Accediendo a LTQ Educación</h3>
+        <p>Usa tu usuario y contraseña para acceder a nuestra plataforma y empieza hoy mismo a preparar tu empresa para el crecimiento y la prosperidad.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <div class="box-dark">
-                    <div class="box-dark-icon">🎁</div>
-                    <h3>Recibir como regalo:Hoja de cálculo de finanzas personales</h3>
-                    <p>¡También recibirás una hoja de cálculo de finanzas personales para que puedas organizar tu vida fuera del trabajo! Al fin y al cabo, la organización lo es todo...</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- FOOTER -->
+<footer>
+  <div style="font-weight:800;font-size:16px;">LTQ <span style="font-weight:400;font-size:12px;">educação</span></div>
+  <p><strong>COPYRIGHT® 2024 – TODOS LOS DERECHOS RESERVADOS</strong></p>
+  <p>CONTACTO: De lunes a viernes de 10h a 17h (Horario de Brasilia). Domingos y feriados, la atención ocurre el primer día hábil siguiente.</p>
+</footer>
 
-    <!-- VIDEO -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">¿Aún no estás seguro de si es lo adecuado para ti?</h2>
-            <p style="text-align: center; font-size: 16px; color: #666; margin-bottom: 30px;">Conozca un poco sobre el impacto en la vida de nuestros estudiantes.</p>
-            
-            <div style="position: relative; width: 100%; max-width: 600px; margin: 0 auto; padding-bottom: 150%; overflow: hidden; border-radius: 12px;">
-                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/VZfOQQ0ntHI" allowfullscreen allow="autoplay"></iframe>
-            </div>
-            
-            <div style="background: white; padding: 30px; border-radius: 12px; border: 1px solid #e0e0e0; margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                <p style="font-style: italic; color: #666; line-height: 1.8; margin-bottom: 20px;">"No tenía absolutamente ningún control sobre lo que entraba y salía de mi empresa... La hoja de cálculo ha cambiado por completo mi vida financiera."</p>
-                <p style="font-weight: 700; color: #2B7A77;">Paulo - Açaiteria</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- GARANTÍA -->
-    <section class="section bg-light">
-        <div class="garantia">
-            <div class="numero-7">7</div>
-            <h2>Garantía de 7 días</h2>
-            <p>Si realiza la inversión y no le gusta la hoja de cálculo de control financiero, por cualquier motivo y ¿Quiero que me devuelvan mi dinero.¡Simplemente envíanos un mensaje y te reembolsaremos todo tu dinero de inmediato, sin hacer preguntas!</p>
-        </div>
-    </section>
-
-    <!-- PRICING -->
-    <section class="pricing">
-        <div class="container">
-            <h2 class="section-title">¡Oferta exclusiva!</h2>
-            <p style="text-align: center; color: rgba(255,255,255,0.9); font-size: 16px; margin-bottom: 40px;">¡Transforma por completo la gestión financiera de tu empresa!</p>
-
-            <div class="pricing-box">
-                <div class="pricing-title">✓ Oportunidad única 🎁</div>
-                <div class="pricing-subtitle">¡Transforma por completo la gestión financiera de tu empresa!</div>
-
-                <div style="font-size: 18px; margin: 30px 0;">TODO con ACCESO DE POR VIDA por solo...</div>
-
-                <div class="price-old">Desde R$397.00 por solo:</div>
-                <div class="price-big">R$ 16,24</div>
-                <div class="price-info">/mes en 12 cuotas<br>o R$157,00 al contado</div>
-
-                <ul class="price-list">
-                    <li>Hoja de cálculo de control financiero para empresas</li>
-                    <li>Hoja de cálculo de finanzas personales</li>
-                    <li>Tutoriales de hojas de cálculo</li>
-                    <li>Acceso a la comunidad VIP</li>
-                    <li>Acceso al curso básico de finanzas, con más de 20 lecciones sobre conceptos fundamentales.</li>
-                    <li>Lección adicional sobre cómo reducir costes en la práctica.</li>
-                    <li>Acceso a 2 bonos exclusivos</li>
-                    <li>Soporte por WhatsApp</li>
-                </ul>
-
-                <button class="btn" onclick="alert('Reemplaza con tu enlace de Hotmart')">¡Acceso inmediato y de por vida!</button>
-
-                <p style="margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.8);">¡Sin cuotas mensuales, el pago es ÚNICO!</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- QUIÉN SOMOS -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">OMS<span style="color: #2B7A77;">¿Somos nosotros?</span></h2>
-
-            <div class="grid-2">
-                <img src="./images/foto16.webp" alt="Equipo" style="width: 100%; border-radius: 12px;">
-                <div>
-                    <p class="about-text">Nuestra misión es ayudar a los pequeños empresarios a gestionar sus negocios mediante herramientas y formación fáciles de usar.</p>
-                    <p class="about-text">Creemos que la transformación se logra hablando con sencillez y centrándose en lo que realmente te importa, como empresario.</p>
-                    <p class="about-text">Además de nuestras herramientas y formación, creemos que la atención al cliente es fundamental para la transformación, y por eso contarás con el apoyo de nuestro equipo de especialistas, que responderá a todas tus preguntas directamente por WhatsApp. ¡</p>
-                    <p class="about-text">¡A partir de ahora, confía en LTQ Educação para transformar tu gestión y hacer crecer tu negocio!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section bg-light">
-        <div class="container">
-            <h2 class="section-title">Preguntas frecuentes:</h2>
-
-            <div class="faq-container">
-                <div class="faq-q" onclick="toggleFaq(this)">¿Necesito entender Excel?</div>
-                <div class="faq-a">No, solo tendrás que completar algunos datos y tendrás acceso automático a todos los informes y análisis. Además, contarás con todo el apoyo necesario de nuestro equipo, que estará a tu disposición durante todo el proceso.</div>
-
-                <div class="faq-q" onclick="toggleFaq(this)">¿Es seguro almacenar mi información financiera en una hoja de cálculo?</div>
-                <div class="faq-a">Sí, es seguro guardar su información financiera en la Hoja de Cálculo de Control Financiero. Dado que nuestra hoja de cálculo está en Excel, la información se almacena localmente en el dispositivo del usuario. Tienes control total y privacidad sobre tus datos, ya que solo tú tendrás acceso a ellos.</div>
-
-                <div class="faq-q" onclick="toggleFaq(this)">¿Qué versión de Excel es compatible con la hoja de cálculo?</div>
-                <div class="faq-a">La hoja de cálculo de Control Financiero es compatible con Excel 2013 y versiones posteriores. Esto significa que también puede utilizar la hoja de cálculo en versiones más recientes de Excel, como Excel 2016, 2019 y 2021. Asegúrese de tener una versión compatible de Excel instalada en su computadora para disfrutar de todas las funciones y características que ofrece.</div>
-
-                <div class="faq-q" onclick="toggleFaq(this)">¿Funciona la hoja de cálculo en Google Sheets?</div>
-                <div class="faq-a">No. Debido a que contiene el lenguaje de programación VBA, que es propiedad exclusiva de Microsoft, Google Sheets no funcionará.</div>
-
-                <div class="faq-q" onclick="toggleFaq(this)">¿Funciona la hoja de cálculo en un Macbook?</div>
-                <div class="faq-a">Sí, siempre y cuando tengas Excel instalado (no puede ser Calc).</div>
-
-                <div class="faq-q" onclick="toggleFaq(this)">¿Funciona la hoja de cálculo en teléfonos móviles?</div>
-                <div class="faq-a">No. Debido a que contiene el lenguaje de programación VBA, que es propiedad exclusiva de Microsoft Excel Desktop, la herramienta solo funciona en ordenadores.</div>
-
-                <div class="faq-q" onclick="toggleFaq(this)">Quiero compartir esto con mi equipo, ¿es posible?</div>
-                <div class="faq-a">Sí. Es posible compartir la hoja de cálculo a través de servicios en la nube (Google Drive, Dropbox y OneDrive). Si no sabes cómo hacerlo, ponte en contacto con nuestro equipo de soporte por WhatsApp y te ayudarán con la configuración sin costo adicional.</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DESPUÉS COMPRAR -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Compré la hoja de cálculo, ¿y ahora?</h2>
-
-            <div class="grid-3">
-                <div class="card-after">
-                    <div class="card-after-icon">📧</div>
-                    <h3>Confirmación de compra por correo electrónico</h3>
-                    <p>Al finalizar la compra, recibirás una notificación sobre el estado de tu pedido. Una vez confirmado el pago, se te otorgará acceso a la plataforma.</p>
-                </div>
-
-                <div class="card-after">
-                    <div class="card-after-icon">📋</div>
-                    <h3>Instrucciones de acceso</h3>
-                    <p>Toda la información y las instrucciones de acceso llegarán a la dirección de correo electrónico que proporcionaste durante el proceso de compra.</p>
-                </div>
-
-                <div class="card-after">
-                    <div class="card-after-icon">🚀</div>
-                    <h3>Acceso a la educación LTQ</h3>
-                    <p>Utiliza tu nombre de usuario y contraseña para acceder a nuestra plataforma y comienza hoy mismo a preparar tu empresa para el crecimiento y la prosperidad.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-logo">LTQ<br><span style="font-size: 12px;">educação</span></div>
-            <p><strong>COPYRIGHT® 2024 – TODOS LOS DERECHOS RESERVADOS</strong></p>
-            <p>CONTACTO:De lunes a viernes de 10:00 a 17:00 (hora de Brasilia). Los domingos y festivos, el servicio se presta el siguiente día hábil.</p>
-        </div>
-    </footer>
-
-    <script>
-        function toggleFaq(el) {
-            el.nextElementSibling.classList.toggle('active');
-        }
-    </script>
+<script>
+const c = document.getElementById('carousel1');
+if(c){
+  let pos=0;
+  setInterval(()=>{
+    pos += 2;
+    if(pos >= c.scrollWidth - c.clientWidth) pos = 0;
+    c.scrollLeft = pos;
+  },30);
+}
+</script>
 
 </body>
 </html>
