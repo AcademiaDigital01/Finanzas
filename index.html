@@ -146,12 +146,9 @@ footer p{ font-size:12px; opacity:.75; margin-top:8px; line-height:1.7; }
   .test-scroll{ flex-direction:column; overflow-x:visible; gap:14px; }
   .test-scroll img{ height:auto; width:100%; border-radius:10px; }
   .media-full{ display:none; }
-  .media-mobile{ display:flex; flex-direction:column; gap:8px; }
-  .media-crop{ width:100%; background-image:url('./Foto11.webp'); background-repeat:no-repeat; border-radius:8px; }
-  .media-crop.top{ aspect-ratio:7/4; background-size:200% 200%; }
-  .media-crop.tl{ background-position:0% 0%; }
-  .media-crop.tr{ background-position:100% 0%; }
-  .media-crop.bottom{ aspect-ratio:7/2; background-size:100% 200%; background-position:0% 100%; }
+  .media-mobile{ display:flex; flex-direction:column; gap:10px; align-items:center; }
+  .media-mobile img{ width:100%; border-radius:8px; }
+  .media-mobile .media-logos-img{ width:70%; border-radius:0; }
 }
 </style>
 </head>
@@ -291,9 +288,10 @@ fbq('track', 'PageView');
     <h2 class="title">¡Salimos destacados en los principales medios!</h2>
     <img class="media-full" src="./Foto11.webp" alt="Medios de comunicación" style="max-width:750px;margin:0 auto;">
     <div class="media-mobile">
-      <div class="media-crop top tl"></div>
-      <div class="media-crop top tr"></div>
-      <div class="media-crop bottom"></div>
+      <img src="./Foto11-logos.webp" alt="Logos medios" class="media-logos-img">
+      <img src="./Foto11-v1.webp" alt="Caracol Televisión">
+      <img src="./Foto11-v2.webp" alt="CityTV">
+      <img src="./Foto11-v3.webp" alt="Semana">
     </div>
   </div>
 </section>
