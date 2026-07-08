@@ -18,6 +18,7 @@ img { max-width:100%; display:block; }
 .hero h1 span{ color:#4FD1C5; }
 .hero p{ font-size:16px; opacity:.9; max-width:650px; margin:0 auto 40px; }
 .hero-img{ max-width:950px; margin:0 auto; border-radius:8px; }
+.hero-img-mobile{ display:none; }
 
 /* SECTION */
 .section{ padding:60px 20px; }
@@ -139,6 +140,16 @@ footer p{ font-size:12px; opacity:.75; margin-top:8px; line-height:1.7; }
   .hero h1{ font-size:28px; }
   .feat-grid,.step-row,.benef-grid,.about-grid,.after-grid,.media-imgs{ grid-template-columns:1fr!important; }
   .step-row img{ order:-1; }
+  .hero-img{ display:none; }
+  .hero-img-mobile{ display:flex; flex-direction:column; gap:10px; max-width:420px; margin:0 auto; }
+  .hero-crop{ width:100%; aspect-ratio:713/735; background-image:url('./Foto1.webp'); background-size:300% 100%; background-repeat:no-repeat; border-radius:8px; }
+  .hero-crop.c1{ background-position:0% 0%; }
+  .hero-crop.c2{ background-position:50% 0%; }
+  .hero-crop.c3{ background-position:100% 0%; }
+  .carousel{ flex-direction:column; overflow-x:visible; }
+  .carousel img{ height:auto; width:100%; }
+  .test-scroll{ flex-direction:column; overflow-x:visible; }
+  .test-scroll img{ height:auto; width:100%; }
 }
 </style>
 </head>
@@ -161,6 +172,11 @@ fbq('track', 'PageView');
     <h1>La herramienta que necesitas para tener claridad total sobre el dinero de tu empresa y <span>por fin entender tu ganancia real!</span></h1>
     <p>Se acabaron las dudas. Se acabaron las suposiciones. Sabe con exactitud cuánto está ganando o perdiendo tu empresa cada mes.</p>
     <img class="hero-img" src="./Foto1.webp" alt="Herramienta de Control Financiero">
+    <div class="hero-img-mobile">
+      <div class="hero-crop c1"></div>
+      <div class="hero-crop c2"></div>
+      <div class="hero-crop c3"></div>
+    </div>
   </div>
 </section>
 
@@ -466,12 +482,23 @@ fbq('track', 'PageView');
 <script>
 const c = document.getElementById('carousel1');
 if(c){
-  let pos=0;
-  setInterval(()=>{
-    pos += 2;
-    if(pos >= c.scrollWidth - c.clientWidth) pos = 0;
+  function isMobile(){ return window.innerWidth <= 768; }
+  let cloned = false;
+  function setup(){
+    if(isMobile() || cloned) return;
+    Array.from(c.children).forEach(img => c.appendChild(img.cloneNode(true)));
+    cloned = true;
+  }
+  setup();
+  let pos = 0;
+  setInterval(() => {
+    if(isMobile()) return;
+    if(!cloned) setup();
+    const half = c.scrollWidth / 2;
+    pos += 1.5;
+    if(pos >= half) pos = 0;
     c.scrollLeft = pos;
-  },30);
+  }, 30);
 }
 </script>
 
