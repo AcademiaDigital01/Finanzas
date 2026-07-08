@@ -136,6 +136,40 @@ footer p{ font-size:12px; opacity:.75; margin-top:8px; line-height:1.7; }
 
 .bg-light{ background:#fafafa; }
 
+/* BOTÓN FLOTANTE */
+.floating-cta{
+    position: fixed;
+    bottom: -100px;
+    left: 0;
+    right: 0;
+    background: #1B5E5C;
+    padding: 12px 20px;
+    box-shadow: 0 -4px 20px rgba(0,0,0,.25);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    transition: bottom .35s ease;
+}
+.floating-cta.show{ bottom: 0; }
+.floating-cta .fc-text{ color: #fff; font-size: 13px; font-weight: 600; display: none; }
+.floating-cta .fc-price{ color: #5BC0BE; font-weight: 800; font-size: 16px; }
+.floating-cta .fc-btn{
+    background: #38C272;
+    color: #fff;
+    font-family: -apple-system, sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 12px 26px;
+    border-radius: 8px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+@media(min-width:640px){
+    .floating-cta .fc-text{ display: block; }
+}
+
 @media(max-width:768px){
   .hero h1{ font-size:28px; }
   .feat-grid,.step-row,.benef-grid,.about-grid,.after-grid,.media-imgs{ grid-template-columns:1fr!important; }
@@ -389,7 +423,7 @@ fbq('track', 'PageView');
       <div class="no-fee">¡Sin Mensualidades,<br>el pago es ÚNICO!</div>
       <div class="price-final">
         <div class="price-old">de $76.75 por apenas:</div>
-        <div class="price-big">$9.97</div>
+        <div class="price-big" data-usd="9.97">$9.97</div>
       </div>
       <a class="btn-buy" href="https://pay.hotmart.com/A106649700F?checkoutMode=10" target="_blank" rel="noopener" style="text-decoration:none;display:block;text-align:center;">¡Acceso Inmediato y de por Vida!</a>
     </div>
@@ -499,6 +533,83 @@ if(c){
     c.scrollLeft = pos;
   }, 30);
 }
+</script>
+
+<!-- BOTÓN FLOTANTE -->
+<div class="floating-cta" id="floatingCta">
+  <span class="fc-text">Herramienta de Control Financiero en 5 Minutos</span>
+  <span class="fc-price">$9.97</span>
+  <a class="fc-btn" href="https://pay.hotmart.com/A106649700F?checkoutMode=10" target="_blank" rel="noopener">Comprar ahora</a>
+</div>
+
+<script>
+(function(){
+  const cta = document.getElementById('floatingCta');
+  if(!cta) return;
+  let shown = false;
+  window.addEventListener('scroll', function(){
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = (scrolled / total) * 100;
+    if(pct >= 40 && !shown){
+      cta.classList.add('show');
+      shown = true;
+    } else if(pct < 40 && shown){
+      cta.classList.remove('show');
+      shown = false;
+    }
+  }, { passive: true });
+})();
+</script>
+
+<script>
+(async function(){
+  const CACHE_KEY = 'adePriceConv';
+  const CACHE_HOURS = 6;
+  function getCache(){
+    try{
+      const raw = localStorage.getItem(CACHE_KEY);
+      if(!raw) return null;
+      const data = JSON.parse(raw);
+      if(Date.now() - data.ts > CACHE_HOURS*3600*1000) return null;
+      return data;
+    }catch(e){ return null; }
+  }
+  function setCache(data){
+    try{ localStorage.setItem(CACHE_KEY, JSON.stringify(Object.assign({}, data, {ts:Date.now()}))); }catch(e){}
+  }
+  function renderConversion(currency, rate){
+    document.querySelectorAll('[data-usd]').forEach(function(el){
+      if(el.dataset.converted) return;
+      const usd = parseFloat(el.getAttribute('data-usd'));
+      if(isNaN(usd)) return;
+      const converted = Math.round(usd*rate).toLocaleString('es-ES');
+      const note = document.createElement('div');
+      note.className = 'price-convert-note';
+      note.style.cssText = 'font-family:-apple-system,sans-serif;font-size:12px;opacity:.75;margin-top:4px;';
+      note.textContent = '≈ ' + converted + ' ' + currency + ' · precio final se confirma en el checkout';
+      el.insertAdjacentElement('afterend', note);
+      el.dataset.converted = '1';
+    });
+  }
+  let cached = getCache();
+  if(cached){
+    if(cached.currency && cached.currency !== 'USD') renderConversion(cached.currency, cached.rate);
+    return;
+  }
+  try{
+    const geo = await fetch('https://ipapi.co/json/').then(function(r){ return r.json(); });
+    const currency = geo.currency;
+    if(!currency || currency === 'USD') { setCache({currency:'USD', rate:1}); return; }
+    const fx = await fetch('https://open.er-api.com/v6/latest/USD').then(function(r){ return r.json(); });
+    const rate = fx.rates && fx.rates[currency];
+    if(!rate) return;
+    setCache({currency: currency, rate: rate});
+    renderConversion(currency, rate);
+  }catch(e){
+    /* Si falla geolocalización o tasa de cambio, la página se queda en USD sin romperse */
+  }
+})();
 </script>
 
 </body>

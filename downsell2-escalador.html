@@ -76,6 +76,7 @@ fbq('track', 'PageView');
     <div class="badge">⏳ Espera — última oportunidad</div>
     <h1>Entendemos que <em>$14.97</em> no era el momento</h1>
     <p class="sub">Por eso, solo en esta página, te dejamos Escalador de Empresas con el 50% de descuento. No se repite.</p>
+    <img src="./FotoDn2.webp" alt="Escalador de Empresas" style="max-width:340px;width:100%;margin:24px auto 0;border-radius:14px;border:1px solid rgba(232,199,126,.4);display:block;">
   </div>
 </section>
 
@@ -98,7 +99,7 @@ fbq('track', 'PageView');
     <div class="pricing-box">
       <div class="pricing-tag">🎁 50% OFF — Solo ahora, no se repite</div>
       <div class="price-old">Antes: $14.97</div>
-      <div class="price-big">$7.48</div>
+      <div class="price-big" data-usd="7.48">$7.48</div>
       <div class="price-save">Ahorras 50%</div>
       <!-- HOTMART - Sales Funnel Widget -->
       <div id="hotmart-sales-funnel"></div>
@@ -119,6 +120,56 @@ fbq('track', 'PageView');
   <p>COPYRIGHT® 2024 – TODOS LOS DERECHOS RESERVADOS</p>
   <p>CONTACTO: soportecompra@outlook.com</p>
 </footer>
+
+<script>
+(async function(){
+  const CACHE_KEY = 'adePriceConv';
+  const CACHE_HOURS = 6;
+  function getCache(){
+    try{
+      const raw = localStorage.getItem(CACHE_KEY);
+      if(!raw) return null;
+      const data = JSON.parse(raw);
+      if(Date.now() - data.ts > CACHE_HOURS*3600*1000) return null;
+      return data;
+    }catch(e){ return null; }
+  }
+  function setCache(data){
+    try{ localStorage.setItem(CACHE_KEY, JSON.stringify(Object.assign({}, data, {ts:Date.now()}))); }catch(e){}
+  }
+  function renderConversion(currency, rate){
+    document.querySelectorAll('[data-usd]').forEach(function(el){
+      if(el.dataset.converted) return;
+      const usd = parseFloat(el.getAttribute('data-usd'));
+      if(isNaN(usd)) return;
+      const converted = Math.round(usd*rate).toLocaleString('es-ES');
+      const note = document.createElement('div');
+      note.className = 'price-convert-note';
+      note.style.cssText = 'font-family:-apple-system,sans-serif;font-size:12px;opacity:.75;margin-top:4px;';
+      note.textContent = '≈ ' + converted + ' ' + currency + ' · precio final se confirma en el checkout';
+      el.insertAdjacentElement('afterend', note);
+      el.dataset.converted = '1';
+    });
+  }
+  let cached = getCache();
+  if(cached){
+    if(cached.currency && cached.currency !== 'USD') renderConversion(cached.currency, cached.rate);
+    return;
+  }
+  try{
+    const geo = await fetch('https://ipapi.co/json/').then(function(r){ return r.json(); });
+    const currency = geo.currency;
+    if(!currency || currency === 'USD') { setCache({currency:'USD', rate:1}); return; }
+    const fx = await fetch('https://open.er-api.com/v6/latest/USD').then(function(r){ return r.json(); });
+    const rate = fx.rates && fx.rates[currency];
+    if(!rate) return;
+    setCache({currency: currency, rate: rate});
+    renderConversion(currency, rate);
+  }catch(e){
+    /* Si falla geolocalización o tasa de cambio, la página se queda en USD sin romperse */
+  }
+})();
+</script>
 
 </body>
 </html>
