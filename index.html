@@ -139,35 +139,67 @@ footer p{ font-size:12px; opacity:.75; margin-top:8px; line-height:1.7; }
 /* BOTÓN FLOTANTE */
 .floating-cta{
     position: fixed;
-    bottom: -100px;
-    left: 0;
-    right: 0;
-    background: #1B5E5C;
-    padding: 12px 20px;
-    box-shadow: 0 -4px 20px rgba(0,0,0,.25);
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(.7);
+    opacity: 0;
+    pointer-events: none;
+    background: linear-gradient(160deg, #1B5E5C 0%, #123832 100%);
+    border: 2px solid #40B29F;
+    border-radius: 18px;
+    padding: 16px 20px;
+    box-shadow: 0 12px 34px rgba(0,0,0,.4);
     z-index: 9999;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 14px;
-    transition: bottom .35s ease;
+    transition: opacity .35s ease, transform .35s ease;
 }
-.floating-cta.show{ bottom: 0; }
-.floating-cta .fc-text{ color: #fff; font-size: 13px; font-weight: 600; display: none; }
-.floating-cta .fc-price{ color: #5BC0BE; font-weight: 800; font-size: 16px; }
+.floating-cta.show{
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+    animation: fcPulse 2.4s ease-in-out infinite;
+}
+@keyframes fcPulse{
+    0%, 100% { box-shadow: 0 12px 34px rgba(0,0,0,.4), 0 0 0 0 rgba(64,178,159,.5); }
+    50% { box-shadow: 0 12px 34px rgba(0,0,0,.4), 0 0 0 10px rgba(64,178,159,0); }
+}
+.floating-cta .fc-info{ display:flex; flex-direction:column; gap:2px; }
+.floating-cta .fc-text{ color:#fff; font-size:12px; font-weight:600; opacity:.85; }
+.floating-cta .fc-price{ color:#5BC0BE; font-weight:800; font-size:20px; line-height:1; }
 .floating-cta .fc-btn{
     background: #38C272;
     color: #fff;
     font-family: -apple-system, sans-serif;
     font-weight: 800;
     font-size: 14px;
-    padding: 12px 26px;
-    border-radius: 8px;
+    padding: 12px 20px;
+    border-radius: 10px;
     text-decoration: none;
     white-space: nowrap;
 }
-@media(min-width:640px){
-    .floating-cta .fc-text{ display: block; }
+.floating-cta .fc-close{
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    color: #123832;
+    font-size: 12px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+@media(max-width:480px){
+    .floating-cta{ padding:14px 16px; gap:10px; }
+    .floating-cta .fc-price{ font-size:17px; }
+    .floating-cta .fc-btn{ padding:10px 16px; font-size:13px; }
 }
 
 @media(max-width:768px){
@@ -537,28 +569,40 @@ if(c){
 
 <!-- BOTÓN FLOTANTE -->
 <div class="floating-cta" id="floatingCta">
-  <span class="fc-text">Herramienta de Control Financiero en 5 Minutos</span>
-  <span class="fc-price">$9.97</span>
+  <div class="fc-close" id="floatingCtaClose">✕</div>
+  <div class="fc-info">
+    <span class="fc-text">Oferta especial</span>
+    <span class="fc-price">$9.97</span>
+  </div>
   <a class="fc-btn" href="https://pay.hotmart.com/A106649700F?checkoutMode=10" target="_blank" rel="noopener">Comprar ahora</a>
 </div>
 
 <script>
 (function(){
   const cta = document.getElementById('floatingCta');
+  const closeBtn = document.getElementById('floatingCtaClose');
   if(!cta) return;
   let shown = false;
+  let dismissed = false;
   window.addEventListener('scroll', function(){
+    if(dismissed) return;
     const scrolled = window.scrollY;
     const total = document.documentElement.scrollHeight - window.innerHeight;
     const pct = (scrolled / total) * 100;
-    if(pct >= 40 && !shown){
+    if(pct >= 35 && !shown){
       cta.classList.add('show');
       shown = true;
-    } else if(pct < 40 && shown){
+    } else if(pct < 35 && shown){
       cta.classList.remove('show');
       shown = false;
     }
   }, { passive: true });
+  if(closeBtn){
+    closeBtn.addEventListener('click', function(){
+      cta.classList.remove('show');
+      dismissed = true;
+    });
+  }
 })();
 </script>
 
